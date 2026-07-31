@@ -1,0 +1,18 @@
+{
+  "provider": "opera",
+  "sources": [
+    "opera-inventory-api-openapi.yml",
+    "opera-marketing-api-openapi.yml",
+    "opera-report-api-openapi.yml"
+  ],
+  "outputs": [
+    "opera-inventory-api-openapi.yml",
+    "opera-marketing-api-openapi.yml",
+    "opera-report-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

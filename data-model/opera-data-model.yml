@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/opera-ads-openapi.yml
+entities:
+  - name: App
+    description: A publisher inventory app (mobile app or website).
+    id_fields: [appId, publisherId, displayId]
+  - name: Placement
+    description: An ad placement belonging to an App.
+    id_fields: [sid, appId]
+  - name: Order
+    description: An advertiser campaign order (reporting dimension).
+    id_fields: [order_id, advertiser_id]
+  - name: LineItem
+    description: A line item within an order (reporting dimension).
+    id_fields: [lineitem_id]
+  - name: Creative
+    description: A creative within a line item (reporting dimension).
+    id_fields: [creative_id]
+  - name: ConversionEvent
+    description: A server-to-server conversion event reported by an advertiser.
+    id_fields: [cvid, click_id]
+relationships:
+  - from: Placement
+    to: App
+    type: belongs_to
+    via: appId
+  - from: App
+    to: Publisher
+    type: belongs_to
+    via: publisherId
+  - from: LineItem
+    to: Order
+    type: belongs_to
+    via: order_id
+  - from: Creative
+    to: LineItem
+    type: belongs_to
+    via: lineitem_id
+  - from: Order
+    to: Advertiser
+    type: belongs_to
+    via: advertiser_id

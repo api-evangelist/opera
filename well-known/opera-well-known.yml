@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of Opera hosts
+hosts:
+  - host: https://opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: opera-security.txt
+      - path: /.well-known/openid-configuration
+        status: 301
+  - host: https://ofa.adx.opera.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: returns SPA HTML, not an RFC 8414 metadata document
+      - path: /.well-known/api-catalog
+        status: 200
+        note: returns SPA HTML, not an RFC 9727 API catalog
+  - host: https://doc.adx.opera.com
+    documents:
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 404

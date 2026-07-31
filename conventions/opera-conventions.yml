@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: https://doc.adx.opera.com/
+note: >-
+  Cross-cutting request/response semantics for the Opera Ads Open API, harvested
+  from the docs and derived from openapi/opera-ads-openapi.yml.
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: 'Bearer <token>'
+  issuance: contact Opera Ads for a token (not self-serve OAuth)
+  see: authentication/opera-authentication.yml
+request:
+  transport: JSON over HTTPS
+  method: POST (all Open API operations use POST bodies)
+  content_type: application/json
+pagination:
+  style: page-number
+  request_params: [page, page_size]
+  defaults: { page: 1, page_size: 50 }
+  max_page_size: 1000
+  response_fields: [page, page_size, total, list]
+error_envelope:
+  fields: [code, message]
+  success_code: 0
+  see: errors/opera-problem-types.yml
+rate_limiting:
+  report_api: 100 requests per minute
+  signal: HTTP 429 Too Many Requests
+  guidance: implement exponential backoff on 429
+  see: errors/opera-problem-types.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header is documented by Opera Ads.
+versioning:
+  scheme: uri-path
+  current: v1
+  see: lifecycle/opera-lifecycle.yml

@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/operaads
+packages:
+  - language: go
+    registry: github
+    name: operaads/api-client
+    url: https://github.com/operaads/api-client
+    install: go get github.com/operaads/api-client
+    official: true
+    description: First-party Go client for the Opera Ads platform (interceptor/proxy/request/response).
+  - language: go
+    registry: github
+    name: operaads/openrtb
+    url: https://github.com/operaads/openrtb
+    install: go get github.com/operaads/openrtb
+    official: true
+    description: OpenRTB protocol definitions for Go, published by Opera Ads.
+  - language: go
+    registry: github
+    name: operaads/vast
+    url: https://github.com/operaads/vast
+    install: go get github.com/operaads/vast
+    official: true
+    description: Golang VAST 3.0 library for Opera Ads video ad serving.
+  - language: java
+    registry: github
+    name: operaads/android-sdk
+    url: https://github.com/operaads/android-sdk
+    official: true
+    description: Opera Ads Android SDK (OpAdxSdk) for publishers monetizing Android apps.
+  - language: objective-c
+    registry: github
+    name: operaads/iOS-sdk
+    url: https://github.com/operaads/iOS-sdk
+    official: true
+    description: Opera Ads iOS SDK (OpAdxSdk) for publishers monetizing iOS apps.

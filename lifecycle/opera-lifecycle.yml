@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://doc.adx.opera.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  evidence: hosts serve /oapi/v1 (report) and /openapi/inventory/v1 (inventory)
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: null
+status_page: null
+note: >-
+  No dedicated Opera Ads status page, SLA document, or deprecation policy was
+  found in the public documentation as of the enrichment date.
+deprecated_operations: []

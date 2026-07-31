@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/opera-ads-openapi.yml
+note: >-
+  No official Opera Ads MCP server was found. This is a candidate tool list
+  derived one-to-one from the documented Opera Ads Open API operations.
+server:
+  name: opera-ads
+  transport: http
+tools:
+  - name: get_campaign_daily_report
+    description: Retrieve daily campaign performance metrics (impressions, clicks, conversions, spend).
+    source_operation: openapi/opera-ads-openapi.yml#getCampaignDailyReport
+  - name: create_app
+    description: Create a new publisher app (inventory) entry.
+    source_operation: openapi/opera-ads-openapi.yml#createApp
+  - name: update_app
+    description: Update an existing publisher app entry.
+    source_operation: openapi/opera-ads-openapi.yml#updateApp
+  - name: list_apps
+    description: List publisher apps with optional filtering.
+    source_operation: openapi/opera-ads-openapi.yml#listApps
+  - name: create_placement
+    description: Create an ad placement on an app.
+    source_operation: openapi/opera-ads-openapi.yml#createPlacement
+  - name: update_placement
+    description: Update ad placement settings.
+    source_operation: openapi/opera-ads-openapi.yml#updatePlacement
+  - name: list_placements
+    description: List ad placements with optional filtering.
+    source_operation: openapi/opera-ads-openapi.yml#listPlacements
+  - name: report_conversion_event
+    description: Report a server-to-server conversion event to Opera Ads.
+    source_operation: openapi/opera-ads-openapi.yml#reportConversionEvent

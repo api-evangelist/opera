@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/opera-ads-openapi.yml + https://doc.adx.opera.com/advertiser/report-api
+format: business-code-envelope
+note: >-
+  Opera Ads does not use RFC 9457 problem+json. Errors are returned with an HTTP
+  status plus a JSON envelope { code, message }. The `code` is a business error
+  code (0 = success). Derived from the documented Report and Inventory Management
+  APIs.
+envelope:
+  fields: [code, message]
+  success_code: 0
+problems:
+  - http_status: 400
+    code: 1
+    title: Invalid parameters
+    remediation: Check request body fields, filters, and value ranges.
+  - http_status: 401
+    code: 2
+    title: Missing or invalid token
+    remediation: 'Supply a valid `Authorization: Bearer <token>` header.'
+  - http_status: 403
+    code: null
+    title: Forbidden / insufficient scope
+    remediation: The token lacks access to the requested resource.
+  - http_status: 429
+    code: 3
+    title: Rate limit exceeded
+    remediation: Back off and retry with exponential backoff (Report API limit 100 req/min).
+  - http_status: 500
+    code: 4
+    title: Server error
+    remediation: Retry later; contact Opera Ads if persistent.

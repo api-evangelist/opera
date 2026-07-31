@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: opera.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb  6 23:59:59 2027 GMT
+  hsts: null
+- host: ofa.adx.opera.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Jan  6 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: opera.com
+  dnssec: false
+  caa:
+  - 0 issue "digicert.com"
+  - 0 issue "globalsign.com"
+  - 0 iodef "mailto:hostmaster@opera.com"
+  - 0 issue "sectigo.com"
+  - 0 issue "trust-provider.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

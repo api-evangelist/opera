@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/opera-ads-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'API token issued by Opera Ads, passed as `Authorization: Bearer <token>`. Contact
+    Opera Ads to obtain credentials.'
+  sources:
+  - openapi/opera-ads-openapi.yml

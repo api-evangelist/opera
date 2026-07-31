@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/opera-ads-openapi.yml
+skills:
+  - file: opera-daily-campaign-report.md
+    name: Pull an Opera Ads daily campaign report
+    api: openapi/opera-ads-openapi.yml
+    operations: [getCampaignDailyReport]
+  - file: opera-manage-inventory.md
+    name: Register an Opera Ads app and placement
+    api: openapi/opera-ads-openapi.yml
+    operations: [createApp, listApps, updateApp, createPlacement, listPlacements, updatePlacement]
+  - file: opera-report-conversion.md
+    name: Report a conversion event to Opera Ads
+    api: openapi/opera-ads-openapi.yml
+    operations: [reportConversionEvent]

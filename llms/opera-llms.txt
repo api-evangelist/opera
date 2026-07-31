@@ -1,0 +1,28 @@
+# Opera Ads
+
+> Opera Ads is the advertising and monetization platform of Opera, the web-browser company. It offers advertisers a self-serve Ad Manager and publishers an SDK/inventory platform, exposed through the Opera Ads Open API (Report, Inventory Management, and server-to-server Marketing/conversion APIs). This is an API Evangelist profile generated from Opera's public documentation.
+
+## APIs
+
+- [Opera Ads Open API docs](https://doc.adx.opera.com/): Advertiser and publisher REST APIs, bearer-token authenticated.
+- [Report API](https://doc.adx.opera.com/advertiser/report-api): POST daily campaign reporting (impressions/clicks/conversions/spend) at https://ofa.adx.opera.com/oapi/v1/report/campaign_daily.
+- [Inventory Management API](https://doc.adx.opera.com/publisher/inventory-management-api): App and placement CRUD at https://ofp.adx.opera.com/openapi/inventory/v1.
+- [Marketing (conversion events) API](https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api): Server-to-server conversion postbacks at https://cb.adx.opera.com/marketing/pb.
+- [OpenRTB Integration Guide](https://doc.adx.opera.com/adx/openrtb/): Programmatic exchange (ADX) integration.
+
+## Specs
+
+- [OpenAPI (generated)](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-ads-openapi.yml)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/authentication/opera-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/conventions/opera-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/errors/opera-problem-types.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/data-model/opera-data-model.yml)
+
+## Docs
+
+- [Self-serve advertiser onboarding (Opera Ad Manager)](https://admanager.opera.com/)
+- [Publisher onboarding](https://doc.adx.opera.com/publisher/onboarding/)
+- [GitHub organization (operaads)](https://github.com/operaads)
+- [Opera blog](https://blogs.opera.com/)
+- [security.txt / responsible disclosure](https://security.opera.com/)
+- [Opera Public Bug Bounty (Bugcrowd)](https://bugcrowd.com/opera)

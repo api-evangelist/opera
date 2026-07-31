@@ -1,9 +1,27 @@
 aid: opera
 name: Opera
-description: 'Opera is a company surfaced as a portfolio company of idg-capital and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer-technology. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Opera is the Norway-based maker of the Opera, Opera GX, and Opera Mini web
+  browsers and operator of the Opera Ads advertising and monetization platform.
+  Opera Ads exposes a public Open API for advertisers (daily campaign reporting
+  and server-to-server conversion events) and for publishers (app and placement
+  inventory management), alongside Android/iOS ad SDKs, an OpenRTB/ADX exchange,
+  first-party Go client and protocol libraries, and a self-serve Opera Ad
+  Manager. API authentication is via a bearer token issued by Opera Ads.
 url: https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/operaads.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +30,119 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Consumer Technology
-apis: []
+- Advertising
+- AdTech
+- Browser
+- Monetization
+- OpenRTB
+- Marketing
+apis:
+- aid: opera:opera-inventory-api
+  name: Opera Inventory API
+  description: Publisher app and placement (inventory) management.
+  humanURL: https://doc.adx.opera.com/
+  baseURL: https://ofa.adx.opera.com/oapi/v1
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/report-api
+- aid: opera:opera-marketing-api
+  name: Opera Marketing API
+  description: Server-to-server conversion event reporting.
+  humanURL: https://doc.adx.opera.com/
+  baseURL: https://ofa.adx.opera.com/oapi/v1
+  tags:
+  - Marketing
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-marketing-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/report-api
+- aid: opera:opera-report-api
+  name: Opera Report API
+  description: Advertiser reporting on campaign performance.
+  humanURL: https://doc.adx.opera.com/
+  baseURL: https://ofa.adx.opera.com/oapi/v1
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-report-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/report-api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Authentication
+  url: authentication/opera-authentication.yml
+- type: DomainSecurity
+  url: security/opera-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/opera-vulnerability-disclosure.yml
+- type: Security
+  url: https://security.opera.com/policy/
+- type: Packages
+  url: packages/opera-packages.yml
+- type: SDKs
+  url: packages/opera-packages.yml
+- type: MCPServer
+  url: mcp/opera-mcp.yml
+- type: LLMsTxt
+  url: llms/opera-llms.txt
+- type: WellKnown
+  url: well-known/opera-well-known.yml
+- type: SecurityTxt
+  url: well-known/opera-security.txt
+- type: Conformance
+  url: conformance/opera-conformance.yml
+- type: ErrorCatalog
+  url: errors/opera-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/opera-lifecycle.yml
+- type: Conventions
+  url: conventions/opera-conventions.yml
+- type: DataModel
+  url: data-model/opera-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://doc.adx.opera.com/
+- type: Documentation
+  url: https://doc.adx.opera.com/
+- type: APIReference
+  url: https://doc.adx.opera.com/advertiser/report-api
+- type: GettingStarted
+  url: https://doc.adx.opera.com/publisher/onboarding/
+- type: GitHubOrganization
+  url: https://github.com/operaads
+- type: Blog
+  url: https://blogs.opera.com/
+- type: SignUp
+  url: https://admanager.opera.com/
+- type: Pricing
+  url: https://www.opera.com/ads
+- type: PrivacyPolicy
+  url: https://www.opera.com/privacy
 - type: Website
   url: https://opera.com/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

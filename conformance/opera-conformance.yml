@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/opera-ads-openapi.yml + https://doc.adx.opera.com/adx/openrtb/
+standards:
+  - id: openrtb
+    conforms: true
+    evidence: >-
+      Opera Ads publishes an OpenRTB integration guide and first-party OpenRTB
+      protocol definitions (github.com/operaads/openrtb); ADX supports standard
+      auction macros (${AUCTION_PRICE} etc.).
+  - id: vast-3.0
+    conforms: true
+    evidence: First-party Golang VAST 3.0 library (github.com/operaads/vast) for video ad serving.
+  - id: iab-content-taxonomy
+    conforms: true
+    evidence: Inventory Management API uses iabCategory fields for apps and placements.
+  - id: coppa
+    conforms: true
+    evidence: App entries carry a coppaCompliant flag.
+  - id: oauth2
+    conforms: false
+    evidence: Auth is a contact-issued static bearer token, not an OAuth2 flow.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a { code, message } business envelope, not application/problem+json.
