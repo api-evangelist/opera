@@ -89,6 +89,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/opera-ads-overlay.yaml
 - type: Authentication
   url: authentication/opera-authentication.yml
 - type: DomainSecurity
