@@ -1,26 +1,34 @@
 aid: opera
 name: Opera
 description: >-
-  Opera is the Norway-based maker of the Opera, Opera GX, and Opera Mini web
-  browsers and operator of the Opera Ads advertising and monetization platform.
-  Opera Ads exposes a public Open API for advertisers (daily campaign reporting
-  and server-to-server conversion events) and for publishers (app and placement
-  inventory management), alongside Android/iOS ad SDKs, an OpenRTB/ADX exchange,
-  first-party Go client and protocol libraries, and a self-serve Opera Ad
-  Manager. API authentication is via a bearer token issued by Opera Ads.
+  Opera is the Norway-based, Nasdaq-listed (OPRA) maker of the Opera, Opera GX,
+  Opera Air, Opera Mini and Opera Neon web browsers, and the operator of the
+  Opera Ads advertising and monetization platform. Opera Ads exposes six
+  documented HTTP APIs: an advertiser Report API for daily campaign
+  performance, a publisher Inventory Management API for apps and placements, a
+  publisher OFP Report API for revenue and delivery, an ADX DSP Report API for
+  exchange performance, a server-to-server Marketing API for conversion
+  postbacks, and a TUS 1.0.0 resumable File Upload API. Around them sit
+  Android and iOS ad SDKs with mediation adapters for AdMob, AppLovin MAX,
+  TopOn, TradPlus and LevelPlay, an OpenRTB/ADX exchange with Prebid.js and
+  Prebid Server adapters, a web JS ad tag, first-party Go OpenRTB and VAST
+  libraries, and the self-serve Opera Ad Manager console. Authentication
+  differs per API — bearer token, token query parameter, X-API-Key or HMAC
+  signature — and every credential is issued by contacting Opera Ads.
 url: https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: self-serve
+  pricing: contact-sales
+  onboarding: sales-assisted
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Contact sales for API credentials
+  confidence: high
   source:
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  - plans
+  generated: '2026-08-13'
+  method: searched
 image: https://github.com/operaads.png
 x-type: company
 x-source: vc-portfolio
@@ -30,7 +38,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Consumer Technology
@@ -40,39 +48,43 @@ tags:
 - Monetization
 - OpenRTB
 - Marketing
+- Mobile SDK
+- Header Bidding
+- Publisher Monetization
+- Reporting
 apis:
 - aid: opera:opera-inventory-api
   name: Opera Inventory API
   description: Publisher app and placement (inventory) management.
-  humanURL: https://doc.adx.opera.com/
-  baseURL: https://ofa.adx.opera.com/oapi/v1
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
   tags:
   - Inventory
   properties:
   - type: OpenAPI
     url: openapi/opera-inventory-api-openapi.yml
   - type: Documentation
-    url: https://doc.adx.opera.com/
+    url: https://doc.adx.opera.com/publisher/inventory-management-api
   - type: APIReference
-    url: https://doc.adx.opera.com/advertiser/report-api
+    url: https://doc.adx.opera.com/publisher/inventory-management-api
 - aid: opera:opera-marketing-api
   name: Opera Marketing API
   description: Server-to-server conversion event reporting.
-  humanURL: https://doc.adx.opera.com/
-  baseURL: https://ofa.adx.opera.com/oapi/v1
+  humanURL: https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api
+  baseURL: https://cb.adx.opera.com
   tags:
   - Marketing
   properties:
   - type: OpenAPI
     url: openapi/opera-marketing-api-openapi.yml
   - type: Documentation
-    url: https://doc.adx.opera.com/
+    url: https://doc.adx.opera.com/advertiser/events-integration/
   - type: APIReference
-    url: https://doc.adx.opera.com/advertiser/report-api
+    url: https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api
 - aid: opera:opera-report-api
   name: Opera Report API
   description: Advertiser reporting on campaign performance.
-  humanURL: https://doc.adx.opera.com/
+  humanURL: https://doc.adx.opera.com/advertiser/report-api
   baseURL: https://ofa.adx.opera.com/oapi/v1
   tags:
   - Report
@@ -80,9 +92,65 @@ apis:
   - type: OpenAPI
     url: openapi/opera-report-api-openapi.yml
   - type: Documentation
-    url: https://doc.adx.opera.com/
+    url: https://doc.adx.opera.com/advertiser/report-api
   - type: APIReference
     url: https://doc.adx.opera.com/advertiser/report-api
+- aid: opera:opera-publisher-report-api
+  name: Opera Publisher Report API
+  description: >-
+    Publisher (OFP) revenue and delivery reporting — a measurement/dimension
+    query returning revenue, eCPM, requests, responses, impressions, clicks,
+    CTR, CPC, fill rate and show rate, plus the older token-in-query inventory
+    report.
+  humanURL: https://doc.adx.opera.com/publisher/ofp/report
+  baseURL: https://ofp.adx.opera.com
+  tags:
+  - Report
+  - Publisher
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-publisher-report-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/publisher/ofp/report
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/ssp/report
+- aid: opera:opera-dsp-report-api
+  name: Opera ADX DSP Report API
+  description: >-
+    Demand-side performance reporting for the Opera ADX exchange — daily
+    impressions, requests, fills and revenue over a window of up to 180
+    consecutive days, authenticated by a token query parameter.
+  humanURL: https://doc.adx.opera.com/adx/dsp/report-api
+  baseURL: https://cms-adx.op-mobile.opera.com
+  tags:
+  - Report
+  - OpenRTB
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-dsp-report-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/adx/dsp/
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/dsp/report-api
+- aid: opera:opera-file-upload-api
+  name: Opera Ads File Upload API
+  description: >-
+    Resumable large-file upload implementing the TUS 1.0.0 protocol, with
+    API-key or HMAC-SHA256 authentication, 4 GB maximum file size, 256 MB
+    chunk ceiling and 7-day session expiry. The upload host is issued per
+    customer by the Opera Ads team.
+  humanURL: https://doc.adx.opera.com/advertiser/file_upload_api
+  baseURL: https://{host}/upload
+  tags:
+  - Upload
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-file-upload-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -105,6 +173,8 @@ common:
   url: packages/opera-packages.yml
 - type: MCPServer
   url: mcp/opera-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/opera-tool-crosswalk.yml
 - type: LLMsTxt
   url: llms/opera-llms.txt
 - type: WellKnown
@@ -115,6 +185,8 @@ common:
   url: conformance/opera-conformance.yml
 - type: ErrorCatalog
   url: errors/opera-problem-types.yml
+- type: ErrorCodes
+  url: errors/opera-sdk-error-codes.yml
 - type: Lifecycle
   url: lifecycle/opera-lifecycle.yml
 - type: Conventions
@@ -123,6 +195,16 @@ common:
   url: data-model/opera-data-model.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: RateLimits
+  url: rate-limits/opera-rate-limits.yml
+- type: Plans
+  url: plans/opera-plans-pricing.yml
+- type: ChangeLog
+  url: changelog/opera-changelog.yml
+- type: Sandbox
+  url: sandbox/opera-sandbox.yml
+- type: Components
+  url: components/opera-components.yml
 - type: DeveloperPortal
   url: https://doc.adx.opera.com/
 - type: Documentation
@@ -134,17 +216,21 @@ common:
 - type: GitHubOrganization
   url: https://github.com/operaads
 - type: Blog
-  url: https://blogs.opera.com/
+  url: https://blogs.opera.com/ads/
+- type: Support
+  url: https://help.opera.com/en/
 - type: SignUp
   url: https://admanager.opera.com/
 - type: Pricing
   url: https://www.opera.com/ads
+- type: TermsOfService
+  url: https://www.opera.com/legal/terms
 - type: PrivacyPolicy
   url: https://www.opera.com/privacy
 - type: Website
   url: https://opera.com/
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 19
+  artifacts_added: 12
   pass: local-v1
