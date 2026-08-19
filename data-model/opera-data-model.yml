@@ -1,6 +1,6 @@
 generated: '2026-07-20'
 method: derived
-source: openapi/opera-ads-openapi.yml
+source: openapi/_original/opera-ads-openapi.yml
 entities:
   - name: App
     description: A publisher inventory app (mobile app or website).

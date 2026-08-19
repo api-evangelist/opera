@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opera Ads Open Inventory Marketing API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marketing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report conversion event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/marketing/pb",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Server-to-server postback used by advertisers to report conversion events (install, register, login, purchase, place_bet, or custom) to Opera Ads. Identification is via the cvid (conversion ID) and click_id rather than a bearer token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,44 @@
+# Opera Ads
+
+> Opera Ads is the advertising and monetization platform of Opera, the web-browser company. It offers advertisers a self-serve Ad Manager and publishers an SDK/inventory platform, exposed through the Opera Ads Open API (advertiser Report, publisher Inventory Management, publisher OFP Report, ADX DSP Report, server-to-server Marketing/conversion, and a TUS-based File Upload API). This file is an API Evangelist companion to Opera's own llms.txt (opera-llms.txt), which covers the browser products rather than the API surface. Generated from Opera's public documentation at https://doc.adx.opera.com/.
+
+## APIs
+
+- [Opera Ads Open API docs](https://doc.adx.opera.com/): Advertiser and publisher REST APIs, bearer-token authenticated.
+- [Report API](https://doc.adx.opera.com/advertiser/report-api): POST daily campaign reporting (impressions/clicks/conversions/spend) at https://ofa.adx.opera.com/oapi/v1/report/campaign_daily. Rate limit 100 req/min; date range max 90 days.
+- [Inventory Management API](https://doc.adx.opera.com/publisher/inventory-management-api): App and placement CRUD at https://ofp.adx.opera.com/openapi/inventory/v1.
+- [Publisher (OFP) Report API](https://doc.adx.opera.com/publisher/ofp/report): Measurement/dimension revenue reporting at https://ofp.adx.opera.com/openapi/report/v1/query.
+- [SSP Report API](https://doc.adx.opera.com/adx/ssp/report): Legacy token-in-query inventory report at https://ofp.adx.opera.com/openapi/reports.
+- [DSP Report API](https://doc.adx.opera.com/adx/dsp/report-api): Exchange performance at https://cms-adx.op-mobile.opera.com/oapi/report/dsp. Date range max 180 days.
+- [Marketing (conversion events) API](https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api): Server-to-server conversion postbacks at https://cb.adx.opera.com/marketing/pb.
+- [File Upload API](https://doc.adx.opera.com/advertiser/file_upload_api): TUS 1.0.0 resumable uploads; API key or HMAC-SHA256; host issued per customer.
+- [OpenRTB Integration Guide](https://doc.adx.opera.com/adx/openrtb/): Programmatic exchange (ADX) integration.
+
+## Specs
+
+- [Report API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-report-api-openapi.yml)
+- [Inventory API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-inventory-api-openapi.yml)
+- [Marketing API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-marketing-api-openapi.yml)
+- [Publisher Report API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-publisher-report-api-openapi.yml)
+- [DSP Report API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-dsp-report-api-openapi.yml)
+- [File Upload API OpenAPI](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/openapi/opera-file-upload-api-openapi.yml)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/authentication/opera-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/conventions/opera-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/errors/opera-problem-types.yml)
+- [SDK error codes](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/errors/opera-sdk-error-codes.yml)
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/rate-limits/opera-rate-limits.yml)
+- [Sandbox / test identifiers](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/sandbox/opera-sandbox.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/opera/refs/heads/main/data-model/opera-data-model.yml)
+
+## Docs
+
+- [Self-serve advertiser onboarding (Opera Ad Manager)](https://admanager.opera.com/)
+- [Publisher onboarding](https://doc.adx.opera.com/publisher/onboarding/)
+- [Android SDK release notes](https://doc.adx.opera.com/publisher/app/sdk/android/release-note/)
+- [iOS SDK release notes](https://doc.adx.opera.com/publisher/app/sdk/ios/release-note/)
+- [Web JS tag](https://doc.adx.opera.com/publisher/web/js-tag)
+- [Header bidding (Prebid.js / Prebid Server)](https://doc.adx.opera.com/publisher/web/header-bidding/)
+- [GitHub organization (operaads)](https://github.com/operaads)
+- [Opera Ads blog](https://blogs.opera.com/ads/)
+- [security.txt / responsible disclosure](https://security.opera.com/)
+- [Opera Public Bug Bounty (Bugcrowd)](https://bugcrowd.com/opera)

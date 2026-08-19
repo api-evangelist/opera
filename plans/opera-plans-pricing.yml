@@ -1,0 +1,40 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.opera.com/ads
+plan_count: 0
+note: >-
+  Opera Ads publishes NO priced plans or tiers. The Opera Ads page is a
+  contact-sales surface: the only quantitative field on it is a "Monthly
+  Digital Ad Budget" qualification band on the lead form, and the page states
+  that "an Opera Ads specialist will get in touch with you". There is no rate
+  card, no CPM/CPC price list, no free tier, no API pricing and no published
+  minimum spend. API access follows the same shape — every API reference page
+  says to contact Opera Ads to obtain a token, so there is no self-serve
+  paid plan behind the API either. Recorded as plan_count 0 rather than
+  omitted, because "enterprise contact-us only" is the finding.
+plans: []
+sales_qualification_bands:
+  note: >-
+    These are lead-routing budget bands on the Opera Ads contact form, NOT
+    plans and NOT prices. Captured only so the absence of real tiers is
+    evidenced rather than asserted.
+  field: Monthly Digital Ad Budget
+  currency: USD
+  bands:
+    - Below $10,000
+    - $10,000 - $50,000
+    - $50,000 - $100,000
+    - $100,000 and above
+  source: https://www.opera.com/ads
+self_serve:
+  console: https://admanager.opera.com/
+  note: >-
+    Opera Ad Manager is a self-serve advertiser console with a wallet, but no
+    pricing for it is published on the public web — the wallet and billing
+    pages sit behind login.
+  wallet_docs: https://doc.adx.opera.com/advertiser/self-service/wallet
+evidence:
+  - url: https://www.opera.com/ads
+    status: 200
+  - url: https://admanager.opera.com/
+    status: 200

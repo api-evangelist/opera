@@ -1,18 +1,76 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://doc.adx.opera.com/
+source: >-
+  https://doc.adx.opera.com/ +
+  https://doc.adx.opera.com/publisher/app/sdk/android/release-note/ +
+  https://doc.adx.opera.com/publisher/app/sdk/ios/release-note/
 versioning:
   scheme: uri-path
   current: v1
-  evidence: hosts serve /oapi/v1 (report) and /openapi/inventory/v1 (inventory)
+  evidence: >-
+    /oapi/v1 (Report), /openapi/inventory/v1 (Inventory), /openapi/report/v1
+    (OFP Report). The DSP report (/oapi/report/dsp), legacy SSP report
+    (/openapi/reports) and Marketing postback (/marketing/pb) carry no version
+    segment at all, so three of six documented APIs are unversioned.
+  sdk_scheme: semver with dated release notes (Android 2.14.0, iOS 2.12.x)
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+  deprecation_header: false
+  note: >-
+    No public deprecation policy and no RFC 8594 Sunset/Deprecation header
+    support was found on any Opera Ads surface. The clearest real-world
+    deprecation in the docs is undeclared: the OFP measurement/dimension query
+    endpoint supersedes the legacy token-in-query /openapi/reports report, but
+    the old endpoint carries no deprecation notice, no sunset date and no
+    migration guide.
+  observed_supersessions:
+    - old: GET https://ofp.adx.opera.com/openapi/reports
+      new: POST https://ofp.adx.opera.com/openapi/report/v1/query
+      declared: false
+    - old: Opera Ads SDK 1.x
+      new: Opera Ads SDK 2.0.0 (2025-11-05, complete refactor)
+      declared: true
+      note: Announced as a major release in the SDK release notes, but with no migration guide or EOL date for 1.x.
 sla:
   url: null
-status_page: null
-note: >-
-  No dedicated Opera Ads status page, SLA document, or deprecation policy was
-  found in the public documentation as of the enrichment date.
+  published: false
+status_page:
+  url: null
+  published: false
+  probes:
+    - url: https://status.opera.com
+      status: 500
+    - url: https://status.adx.opera.com
+      status: 0
+      note: DNS does not resolve.
+  note: >-
+    No status page. status.opera.com returns HTTP 500 and status.adx.opera.com
+    does not resolve, so there is no incident or uptime surface for any Opera
+    Ads API. No StatusPage pointer was emitted.
+changelog:
+  published: partial
+  see: changelog/opera-changelog.yml
+  note: >-
+    Dated release notes exist for the two publisher SDKs only. No HTTP API has
+    a changelog.
+support:
+  channel: contact Opera Ads / Opera support (email + in-console)
+  self_serve: false
 deprecated_operations: []
+notes:
+  - >-
+    The Campaign Management API is listed in the docs sidebar at
+    /advertiser/campaign-management-api but the page is an empty stub — a
+    title and nothing else. It is advertised but not documented, so no spec
+    was written for it.
+  - >-
+    Same shape at /publisher/rewarded-server-to-server-integration and
+    /advertiser/events-integration/ — sidebar entries whose pages render a
+    heading and no body. The rewarded SSV callback is real (Android SDK 2.4.0,
+    2026-01-11 added "SSV callback support for incentivized ads"), which means
+    Opera DOES send a server-to-server verification request out to a
+    publisher-configured endpoint, but its contract — URL registration,
+    parameters, signature — is nowhere in the public docs. No Webhooks
+    pointer was emitted, because the callback is not documented well enough to
+    describe.

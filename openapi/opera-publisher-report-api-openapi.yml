@@ -1,0 +1,256 @@
+openapi: 3.0.3
+info:
+  title: Opera Ads Publisher (OFP) Report API
+  version: v1
+  description: >-
+    Publisher-side reporting for the Opera Ads / OFP platform. Exposes a
+    measurement-and-dimension query endpoint returning revenue, requests,
+    responses, impressions, clicks, CTR, eCPM, fill rate and show rate for a
+    publisher's apps and placements, plus the older token-in-query inventory
+    report. Transcribed by API Evangelist from the public Opera Ads
+    documentation at https://doc.adx.opera.com/publisher/ofp/report and
+    https://doc.adx.opera.com/adx/ssp/report — endpoints, fields, and error
+    codes are taken from those pages; contact Opera Ads to obtain a token.
+  contact:
+    name: Opera Ads
+    url: https://doc.adx.opera.com/
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://doc.adx.opera.com/publisher/ofp/report
+servers:
+  - url: https://ofp.adx.opera.com
+    description: Opera Ads publisher platform (OFP) host
+tags:
+  - name: PublisherReport
+    description: Publisher revenue and delivery reporting.
+paths:
+  /openapi/report/v1/query:
+    post:
+      tags: [PublisherReport]
+      operationId: queryPublisherReport
+      summary: Query publisher report data
+      description: >-
+        Retrieve publisher report data with flexible filtering and grouping. The
+        request must include a `day` filter. Measurements mix dimensions
+        (day, publisher_id, app_id, slot_id, country_code, traffic_type,
+        sdk_ad_format, os_type) and metrics (costs, cost_ecpm, requests,
+        responses, impressions, clicks, ctr, cpc, fillrate, showrate).
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublisherReportQuery'
+            example:
+              filters:
+                - name: day
+                  value: ['20260106', '20260113']
+              measurements:
+                - name: day
+                  sort: desc
+                - name: costs
+                  sort: ''
+                - name: impressions
+                  sort: ''
+              offset: 0
+              limit: 50
+      responses:
+        '200':
+          description: Report rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherReportResponse'
+        '400':
+          description: Bad Request — invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized — invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — insufficient scope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Too Many Requests — retry with exponential backoff
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /openapi/reports:
+    get:
+      tags: [PublisherReport]
+      operationId: getInventoryReport
+      summary: Get inventory performance report (legacy token-in-query)
+      description: >-
+        Older SSP-facing report endpoint that returns inventory and performance
+        data for a date range. Authentication is a `token` query parameter
+        rather than a bearer header. `revenue` is in US dollars; `-1` means the
+        figure is still being updated.
+      parameters:
+        - name: token
+          in: query
+          required: true
+          description: Report token issued by Opera Ads.
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          required: true
+          description: Start date (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: true
+          description: End date (YYYY-MM-DD).
+          schema:
+            type: string
+            format: date
+        - name: split
+          in: query
+          required: false
+          description: When true, return split (broken-down) data.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Inventory report rows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReportResponse'
+        '400':
+          description: Invalid token or parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Auth token issued by Opera Ads, passed as `Authorization: Bearer <token>`.
+        Obtained from the Opera Ads publisher console.
+  schemas:
+    Filter:
+      type: object
+      required: [name, value]
+      properties:
+        name:
+          type: string
+          description: Filter field name, e.g. "day", "app_id", "slot_id".
+        value:
+          description: Filter value — an array for a date range or an ID list.
+    Measurement:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: Metric or dimension name.
+        sort:
+          type: string
+          description: Sort direction — "desc", "asc", or "" for no sorting.
+          enum: ['desc', 'asc', '']
+    PublisherReportQuery:
+      type: object
+      required: [filters, measurements, limit]
+      properties:
+        filters:
+          type: array
+          description: Filter conditions; must include a `day` filter.
+          items:
+            $ref: '#/components/schemas/Filter'
+        measurements:
+          type: array
+          description: Metrics and dimensions to retrieve.
+          items:
+            $ref: '#/components/schemas/Measurement'
+        offset:
+          type: integer
+          description: Pagination offset.
+          default: 0
+        limit:
+          type: integer
+          description: Number of records to return.
+    PublisherReportResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Status message.
+        rows:
+          type: array
+          description: Report rows; fields depend on the requested measurements.
+          items:
+            type: object
+            additionalProperties: true
+        statusCode:
+          type: integer
+          description: Status code — 0 means success.
+        total:
+          type: integer
+          description: Total number of matching records.
+    InventoryReportRow:
+      type: object
+      properties:
+        day:
+          type: integer
+          description: Date as YYYYMMDD.
+        app_id:
+          type: string
+        app_name:
+          type: string
+        ad_tag_id:
+          type: string
+        ad_tag_name:
+          type: string
+        country_code:
+          type: string
+        format:
+          type: string
+          description: Ad format, e.g. "Native".
+        impression_count:
+          type: integer
+        request_count:
+          type: integer
+        revenue:
+          type: number
+          description: Revenue in US dollars; -1 means the figure is still updating.
+    InventoryReportResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryReportRow'
+        total_count:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code — 0 means success.
+        msg:
+          type: string
+          description: Error message.
+        message:
+          type: string
+          description: Error message (alternate field name used by some endpoints).

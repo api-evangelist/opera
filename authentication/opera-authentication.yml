@@ -1,14 +1,115 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/opera-ads-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/advertiser/report-api +
+  https://doc.adx.opera.com/publisher/inventory-management-api +
+  https://doc.adx.opera.com/publisher/ofp/report +
+  https://doc.adx.opera.com/adx/dsp/report-api +
+  https://doc.adx.opera.com/advertiser/file_upload_api +
+  https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api
+docs: https://doc.adx.opera.com/advertiser/report-api
+note: >-
+  Opera Ads uses FOUR different authentication mechanisms across six APIs, with
+  no single sign-on story and no OAuth anywhere. Every credential is issued by
+  a human at Opera — there is no self-serve key provisioning, no key rotation
+  endpoint, no scopes, and no test/live key distinction. The Marketing
+  conversion postback is unauthenticated: it is identified by an
+  Opera-allocated cvid plus a per-click click_id, which means anyone holding a
+  valid click_id can post an event.
 summary:
   types:
   - http
+  - apiKey
+  - custom-hmac
+  - unauthenticated
+  oauth2: false
+  openid: false
+  mtls: false
+  self_serve_issuance: false
+  scopes_published: false
 schemes:
 - name: bearerAuth
   type: http
   scheme: bearer
-  description: 'API token issued by Opera Ads, passed as `Authorization: Bearer <token>`. Contact
-    Opera Ads to obtain credentials.'
+  header: Authorization
+  format: 'Bearer <token>'
+  description: >-
+    Primary scheme. API token issued by Opera Ads, passed as
+    `Authorization: Bearer <token>`. Used by the advertiser Report API, the
+    publisher Inventory Management API and the publisher OFP Report API.
+  issuance: Contact Opera Ads (advertiser) or the publisher console (OFP).
+  used_by:
+  - openapi/opera-report-api-openapi.yml
+  - openapi/opera-inventory-api-openapi.yml
+  - openapi/opera-publisher-report-api-openapi.yml
   sources:
-  - openapi/opera-ads-openapi.yml
+  - https://doc.adx.opera.com/advertiser/report-api
+  - https://doc.adx.opera.com/publisher/inventory-management-api
+- name: queryToken
+  type: apiKey
+  in: query
+  name_param: token
+  description: >-
+    Legacy exchange reporting. The DSP Report API and the older SSP inventory
+    report take the credential as a `token` QUERY PARAMETER, which puts a
+    long-lived secret into URLs, proxy logs and browser history. Opera's own
+    documentation demonstrates it with a live-looking token in a GET example.
+  issuance: Issued by Opera to the DSP/SSP partner.
+  used_by:
+  - openapi/opera-dsp-report-api-openapi.yml
+  - openapi/opera-publisher-report-api-openapi.yml
+  risk: credential-in-url
+  sources:
+  - https://doc.adx.opera.com/adx/dsp/report-api
+  - https://doc.adx.opera.com/adx/ssp/report
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  name_param: X-API-Key
+  key_prefix: adx_
+  description: >-
+    File Upload API option A. Static API key issued by the Opera team, prefixed
+    `adx_`. Rotation is by contacting Opera support; there is no self-serve
+    rotation.
+  used_by:
+  - openapi/opera-file-upload-api-openapi.yml
+  sources:
+  - https://doc.adx.opera.com/advertiser/file_upload_api
+- name: hmacAuth
+  type: custom-hmac
+  algorithm: HMAC-SHA256
+  headers:
+  - X-HMAC-Key-Id
+  - X-HMAC-Timestamp
+  - X-HMAC-Signature
+  key_id_prefix: ADX_HMAC_
+  signature_message: '{METHOD}\n{PATH}\n{TIMESTAMP}'
+  encoding: lowercase hex
+  timestamp_window: '±300 seconds'
+  description: >-
+    File Upload API option B and the strongest scheme Opera publishes.
+    Per-request signature over method, path and Unix timestamp; the shared
+    secret never travels with the request, and the timestamp window prevents
+    replay. Opera recommends it over the static API key.
+  used_by:
+  - openapi/opera-file-upload-api-openapi.yml
+  sources:
+  - https://doc.adx.opera.com/advertiser/file_upload_api
+- name: none
+  type: unauthenticated
+  description: >-
+    The server-to-server Marketing conversion postback
+    (https://cb.adx.opera.com/marketing/pb) carries NO credential. Identity is
+    the Opera-allocated `cvid` plus the per-click `click_id` captured from the
+    landing-page query string. There is no signature, no shared secret and no
+    timestamp, so the endpoint's integrity rests entirely on click_id secrecy.
+  used_by:
+  - openapi/opera-marketing-api-openapi.yml
+  sources:
+  - https://doc.adx.opera.com/advertiser/events-integration/server-to-server-marketing-api
+authorization:
+  scopes: []
+  note: >-
+    Several APIs return "403 Forbidden — Insufficient scope", but Opera
+    publishes no scope registry, no scope names and no way to inspect a token's
+    grants. Nothing derivable; scopes/ is intentionally not written.

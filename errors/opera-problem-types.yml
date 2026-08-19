@@ -1,33 +1,162 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/opera-ads-openapi.yml + https://doc.adx.opera.com/advertiser/report-api
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/advertiser/report-api +
+  https://doc.adx.opera.com/publisher/inventory-management-api +
+  https://doc.adx.opera.com/publisher/ofp/report +
+  https://doc.adx.opera.com/adx/dsp/report-api +
+  https://doc.adx.opera.com/advertiser/file_upload_api
 format: business-code-envelope
 note: >-
-  Opera Ads does not use RFC 9457 problem+json. Errors are returned with an HTTP
-  status plus a JSON envelope { code, message }. The `code` is a business error
-  code (0 = success). Derived from the documented Report and Inventory Management
-  APIs.
-envelope:
-  fields: [code, message]
-  success_code: 0
+  Opera Ads does not use RFC 9457 problem+json. Errors come back as an HTTP
+  status plus one of FOUR different JSON envelopes, depending on which API you
+  called. The DSP Report API is the trap: it returns HTTP 200 for invalid
+  parameters, invalid token AND throttling, putting the real outcome only in
+  the body's `statusCode`. A client that branches on HTTP status alone will
+  treat those failures as successes. SDK-side errors are catalogued separately
+  in errors/opera-sdk-error-codes.yml.
+envelopes:
+  - api: Opera Report API
+    fields: [code, message]
+    success_code: 0
+    http_mirrors_code: true
+  - api: Opera Inventory API / Publisher (OFP) Report API
+    fields: [code, msg, data]
+    success_code: 0
+    http_mirrors_code: true
+    note: >-
+      The OFP query endpoint's SUCCESS response uses a different shape again —
+      {message, rows, statusCode, total}.
+  - api: Opera ADX DSP Report API
+    fields: [data, message, statusCode]
+    success_code: 0
+    http_mirrors_code: false
+    warning: Always HTTP 200; failure is signalled only by statusCode.
+  - api: Opera File Upload API
+    fields: [error]
+    success_code: null
+    http_mirrors_code: true
 problems:
-  - http_status: 400
+  - api: Report API
+    http_status: 400
+    code: 1
+    title: invalid request
+    detail: Invalid request parameters — bad date range, missing required filters.
+    remediation: Check request body fields, filters, and value ranges. Date range max 90 days.
+  - api: Report API
+    http_status: 401
+    code: 2
+    title: token not provided or invalid token
+    detail: Authorization header is missing, or the token is invalid or disabled.
+    remediation: 'Supply a valid `Authorization: Bearer <token>` header.'
+  - api: Report API
+    http_status: 429
+    code: 3
+    title: too many request
+    detail: Rate limit exceeded (100 requests per minute).
+    remediation: Back off and retry with exponential backoff. No Retry-After header is sent.
+  - api: Report API
+    http_status: 500
+    code: 4
+    title: internal error
+    detail: Server error.
+    remediation: Retry later; contact Opera Ads if persistent.
+  - api: Inventory API / OFP Report API
+    http_status: 400
+    code: 400
+    title: Bad Request
+    detail: Invalid parameters.
+    remediation: Validate the request body against the operation schema.
+  - api: Inventory API / OFP Report API
+    http_status: 401
+    code: 401
+    title: Unauthorized
+    detail: Invalid or missing token.
+    remediation: Re-issue the bearer token from the Opera Ads console.
+  - api: Inventory API / OFP Report API
+    http_status: 403
+    code: 403
+    title: Forbidden
+    detail: Insufficient scope.
+    remediation: >-
+      Opera publishes no scope registry, so there is no way to inspect or
+      request the missing grant — contact Opera Ads.
+  - api: Inventory API / OFP Report API
+    http_status: 429
+    code: null
+    title: Too Many Requests
+    detail: Rate limited; no published limit.
+    remediation: Retry with exponential backoff.
+  - api: Inventory API / OFP Report API
+    http_status: 500
+    code: 500
+    title: Internal Server Error
+    remediation: Retry later.
+  - api: DSP Report API
+    http_status: 200
     code: 1
     title: Invalid parameters
-    remediation: Check request body fields, filters, and value ranges.
-  - http_status: 401
+    detail: >-
+      Bad date format (must be zero-padded YYYY-MM-DD) or a range of 180 days
+      or more.
+    remediation: Zero-pad dates and keep the window under 180 days.
+  - api: DSP Report API
+    http_status: 200
     code: 2
-    title: Missing or invalid token
-    remediation: 'Supply a valid `Authorization: Bearer <token>` header.'
-  - http_status: 403
-    code: null
-    title: Forbidden / insufficient scope
-    remediation: The token lacks access to the requested resource.
-  - http_status: 429
+    title: Invalid token
+    remediation: Check the token query parameter.
+  - api: DSP Report API
+    http_status: 200
     code: 3
-    title: Rate limit exceeded
-    remediation: Back off and retry with exponential backoff (Report API limit 100 req/min).
-  - http_status: 500
+    title: Too many request
+    detail: Blocked by the QPS limiter.
+    remediation: Slow down; no published QPS number.
+  - api: DSP Report API
+    http_status: 200
     code: 4
-    title: Server error
-    remediation: Retry later; contact Opera Ads if persistent.
+    title: Internal error
+    detail: e.g. unable to connect to database.
+    remediation: Retry later.
+  - api: File Upload API
+    http_status: 400
+    code: null
+    title: Invalid Upload-Metadata or undersized chunk
+    detail: >-
+      Missing `key`, empty `key`, path traversal in `key`, or a non-final chunk
+      below the 5 MB minimum.
+    remediation: Base64-encode a clean relative `key`; keep chunks 5 MB–256 MB.
+  - api: File Upload API
+    http_status: 401
+    code: null
+    title: Missing or invalid authentication
+    remediation: >-
+      Check the X-API-Key, or the HMAC signature and its ±300s timestamp
+      window.
+  - api: File Upload API
+    http_status: 403
+    code: null
+    title: Forbidden
+    detail: The upload ID exists but belongs to a different customer.
+    remediation: Use an upload session you created.
+  - api: File Upload API
+    http_status: 404
+    code: null
+    title: Upload ID not found
+    remediation: The session may have expired — sessions lapse after 7 days.
+  - api: File Upload API
+    http_status: 409
+    code: null
+    title: Offset conflict
+    detail: Upload already complete, or Upload-Offset does not match the server's offset.
+    remediation: HEAD the session URL for the authoritative offset and resume from it.
+  - api: File Upload API
+    http_status: 413
+    code: null
+    title: Too large
+    detail: Upload-Length over 4 GB at creation, or a chunk over the 256 MB gateway limit.
+    remediation: Split the file; keep chunks under 256 MB.
+  - api: File Upload API
+    http_status: 500
+    code: null
+    title: Internal server error
+    remediation: Retry with backoff; the TUS offset makes retry safe.

@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/publisher/app/sdk/ios/integration/ +
+  https://doc.adx.opera.com/publisher/app/sdk/android/integration/ +
+  https://doc.adx.opera.com/adx/openrtb/ +
+  https://doc.adx.opera.com/publisher/web/header-bidding/prebid-js
+note: >-
+  Opera Ads has NO sandbox environment and NO test host. The docs state it
+  plainly for the exchange: "There is no test endpoint. But the API can return
+  test ads in integration phase." What Opera does publish is a set of TEST
+  IDENTIFIERS and a device allow-list that make the PRODUCTION endpoints return
+  non-billable test ads. Every value below is copied verbatim from Opera's own
+  documentation — none is invented. There are no test API tokens: an Opera Ads
+  API token is issued by a human at Opera and is the same token in every
+  context, which is the sharpest gap in this provider's developer experience.
+environments:
+  - name: production
+    host_report: https://ofa.adx.opera.com/oapi/v1
+    host_inventory: https://ofp.adx.opera.com/openapi/inventory/v1
+    host_marketing: https://cb.adx.opera.com
+    note: The only environment. Test behaviour is selected by identifier, not by host.
+test_endpoint: false
+test_credentials:
+  available: false
+  note: >-
+    No test-mode API key, no key prefix distinguishing test from live. Tokens
+    are issued by contacting Opera Ads and are live tokens.
+mechanisms:
+  - name: Test placement IDs (iOS SDK)
+    kind: fixture-identifier
+    description: >-
+      Published placement IDs that return test ads for each format. Opera warns:
+      replace with production IDs before release, and never ship test
+      credentials in a production build.
+    values:
+      - format: Native
+        placement_id: s14198263063424
+        video: false
+      - format: Native (Video)
+        placement_id: s15559042872128
+        video: true
+      - format: Banner
+        placement_id: s14170965187264
+        video: false
+      - format: Banner (Video)
+        placement_id: s14198605602880
+        video: true
+      - format: Interstitial
+        placement_id: s14198264979520
+        video: false
+      - format: Interstitial (Video)
+        placement_id: s14198603681728
+        video: true
+      - format: Rewarded Video
+        placement_id: s14198592226752
+        video: true
+      - format: Rewarded Interstitial
+        placement_id: s14496445187904
+        video: true
+      - format: App Open
+        placement_id: s14496438551808
+        video: false
+    source: https://doc.adx.opera.com/publisher/app/sdk/ios/integration/
+  - name: Test Device List
+    kind: allow-list
+    description: >-
+      Register a device in the Opera Ads console and the SDK automatically
+      returns test ads to it, with any placement. The alternative to test
+      placement IDs on Android.
+    source: https://doc.adx.opera.com/publisher/app/sdk/android/integration/
+  - name: Test ad unit IDs from the dashboard
+    kind: fixture-identifier
+    description: >-
+      Opera Ads console issues per-account test ad unit IDs; the published IDs
+      above are the iOS documentation's shared set.
+    source: https://doc.adx.opera.com/publisher/app/sdk/android/integration/
+  - name: Zero bid floor (OpenRTB / Prebid)
+    kind: request-trigger
+    description: >-
+      For the ADX/OpenRTB and Prebid integrations, set bidfloorprice to zero in
+      the sample imp object and the exchange returns test ads. The sample imp
+      object in the docs carries usable publisherId, endpointId and placementId
+      values for adapter testing.
+    source: https://doc.adx.opera.com/adx/openrtb/
+time_simulation:
+  supported: false
+  note: No test clock, no time-travel fixtures. Report APIs query real historical days only.
+triggers_and_fixtures:
+  webhook_replay: false
+  event_simulation: false
+  note: >-
+    Conversion postbacks to https://cb.adx.opera.com/marketing/pb can be sent
+    by hand with a real cvid and click_id, but Opera publishes no test cvid and
+    no simulator, so there is no way to exercise the conversion path without a
+    live campaign.

@@ -1,0 +1,148 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/opera-mcp.yml + openapi/
+note: >-
+  Binds every candidate MCP tool to its backing OpenAPI operationId. Because
+  Opera Ads ships NO MCP server, the tool side of this crosswalk is our own
+  derived candidate list rather than a live tools/list response — so every
+  binding is 1:1 and confidence is high by construction, and the value of this
+  file is the REST-side coverage picture, not tool discovery. There is no
+  GraphQL surface. Two documented operations have no candidate tool and are
+  listed in rest_only[] with the reason.
+surfaces:
+  openapi:
+    - path: openapi/opera-report-api-openapi.yml
+      host: https://ofa.adx.opera.com/oapi/v1
+      gated: false
+    - path: openapi/opera-inventory-api-openapi.yml
+      host: https://ofp.adx.opera.com/openapi/inventory/v1
+      gated: false
+    - path: openapi/opera-marketing-api-openapi.yml
+      host: https://cb.adx.opera.com
+      gated: false
+    - path: openapi/opera-publisher-report-api-openapi.yml
+      host: https://ofp.adx.opera.com
+      gated: false
+    - path: openapi/opera-dsp-report-api-openapi.yml
+      host: https://cms-adx.op-mobile.opera.com
+      gated: false
+    - path: openapi/opera-file-upload-api-openapi.yml
+      host: https://{host}/upload
+      gated: true
+      gate_note: >-
+        Upload host is issued per customer by the Opera team; the docs write it
+        as https://<service-host>/upload. Publicly unreachable without that host.
+  graphql: null
+  mcp:
+    url: null
+    gated: false
+    note: No MCP server published; tools are our derived candidates.
+crosswalk:
+  - tool: get_campaign_daily_report
+    category: reporting
+    rest: [getCampaignDailyReport]
+    binding: one-to-one
+    confidence: high
+  - tool: create_app
+    category: inventory
+    rest: [createApp]
+    binding: one-to-one
+    confidence: high
+  - tool: update_app
+    category: inventory
+    rest: [updateApp]
+    binding: one-to-one
+    confidence: high
+  - tool: list_apps
+    category: inventory
+    rest: [listApps]
+    binding: one-to-one
+    confidence: high
+  - tool: create_placement
+    category: inventory
+    rest: [createPlacement]
+    binding: one-to-one
+    confidence: high
+  - tool: update_placement
+    category: inventory
+    rest: [updatePlacement]
+    binding: one-to-one
+    confidence: high
+  - tool: list_placements
+    category: inventory
+    rest: [listPlacements]
+    binding: one-to-one
+    confidence: high
+  - tool: report_conversion_event
+    category: measurement
+    rest: [reportConversionEvent]
+    binding: one-to-one
+    confidence: high
+  - tool: query_publisher_report
+    category: reporting
+    rest: [queryPublisherReport]
+    binding: one-to-one
+    confidence: high
+  - tool: get_inventory_report
+    category: reporting
+    rest: [getInventoryReport]
+    binding: one-to-one
+    confidence: high
+    note: Legacy token-in-query endpoint; superseded in practice by queryPublisherReport.
+  - tool: get_dsp_report
+    category: reporting
+    rest: [getDspReport]
+    binding: one-to-one
+    confidence: high
+  - tool: get_upload_capabilities
+    category: files
+    rest: [getUploadCapabilities]
+    binding: one-to-one
+    confidence: high
+  - tool: create_upload_session
+    category: files
+    rest: [createUploadSession]
+    binding: one-to-one
+    confidence: high
+  - tool: upload_chunk
+    category: files
+    rest: [uploadChunk]
+    binding: one-to-one
+    confidence: high
+    note: >-
+      Binary body over application/offset+octet-stream — not agent-friendly as
+      a single tool call; a real MCP server would wrap the whole TUS loop.
+  - tool: get_upload_offset
+    category: files
+    rest: [getUploadOffset]
+    binding: one-to-one
+    confidence: high
+  - tool: cancel_upload
+    category: files
+    rest: [cancelUpload]
+    binding: one-to-one
+    confidence: high
+  - tool: list_uploads
+    category: files
+    rest: [listUploads]
+    binding: one-to-one
+    confidence: high
+mcp_only: []
+rest_only:
+  - operation: getUploadSessionCapabilities
+    spec: openapi/opera-file-upload-api-openapi.yml
+    reason: >-
+      OPTIONS preflight on a single session; duplicates
+      getUploadCapabilities and carries no agent-usable result.
+  - operation: getUpload
+    spec: openapi/opera-file-upload-api-openapi.yml
+    reason: >-
+      Per-upload detail record; folded into list_uploads for the candidate tool
+      list rather than exposed as a second tool.
+coverage:
+  openapi_operations: 19
+  tools: 17
+  mapped: 17
+  mcp_only: 0
+  rest_only: 2
+  graphql_fields: 0

@@ -1,0 +1,2304 @@
+{
+  "item": [
+    {
+      "id": "0624cc98-a2e9-4c4f-8fb0-8dbb41ff7b5f",
+      "name": "Inventory",
+      "description": {
+        "content": "Publisher app and placement (inventory) management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d29a6e4e-9502-404d-8fda-a3c2142293a6",
+          "name": "Create app",
+          "request": {
+            "name": "Create app",
+            "description": {
+              "content": "Create a new app (inventory) entry for a publisher.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "app",
+                "create"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7736dfcd-256d-4503-909d-3febe2246a68",
+              "name": "Created app",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2936bf7-20a2-4aad-8334-330eddd4f47d",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d422d43-d7da-4ab9-9fd9-db7c15966f12",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc07daa0-7010-4573-aa90-bd6301e3f4fa",
+              "name": "Insufficient scope for the requested resource",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68a48f0c-abcb-457c-8766-581046106115",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19f4efbf-e8b9-4ba5-bb4e-7f3765f7ef38",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2e0abde-af2b-4a93-b0ea-e90d220cb763",
+          "name": "Update app",
+          "request": {
+            "name": "Update app",
+            "description": {
+              "content": "Modify an existing app entry (supports partial updates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "app",
+                "update"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9af8a7ef-737f-45d0-b251-eeb5c475c7e2",
+              "name": "Updated app",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d9312a4-4951-4694-9285-6cc50ec0dcf0",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71700a48-71f3-4279-bf10-34e126105cfb",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "369103f5-6cb5-4a19-9881-8bcad12f0c48",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acc6bc8d-0a6f-4bea-bba1-359e9fc985da",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"publisherId\": \"<string>\",\n  \"displayId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"pkgName\": \"<string>\",\n  \"domainName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"appAdsTxtLink\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"coppaCompliant\": \"<boolean>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "386e36a5-35e6-43f7-b119-4d47e3c341f7",
+          "name": "List apps",
+          "request": {
+            "name": "List apps",
+            "description": {
+              "content": "Retrieve apps with optional filtering by device, OS, traffic type, IAB category, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "app",
+                "list"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90e39ec0-8f31-41aa-ae71-ff189fe06e1a",
+              "name": "App list",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9701,\n  \"data\": {\n    \"totalCount\": 4321,\n    \"list\": [\n      {\n        \"appId\": \"<string>\",\n        \"publisherId\": \"<string>\",\n        \"displayId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deviceType\": \"<string>\",\n        \"osType\": \"<string>\",\n        \"trafficType\": \"<string>\",\n        \"pkgName\": \"<string>\",\n        \"domainName\": \"<string>\",\n        \"url\": \"<string>\",\n        \"appAdsTxtLink\": \"<string>\",\n        \"iabCategory\": \"<string>\",\n        \"coppaCompliant\": \"<boolean>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"appId\": \"<string>\",\n        \"publisherId\": \"<string>\",\n        \"displayId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"deviceType\": \"<string>\",\n        \"osType\": \"<string>\",\n        \"trafficType\": \"<string>\",\n        \"pkgName\": \"<string>\",\n        \"domainName\": \"<string>\",\n        \"url\": \"<string>\",\n        \"appAdsTxtLink\": \"<string>\",\n        \"iabCategory\": \"<string>\",\n        \"coppaCompliant\": \"<boolean>\",\n        \"status\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc05d180-00ba-4dfe-b547-e05d30ea0d86",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "930c9476-350e-4aa8-812c-f494628c5fd5",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66c25410-5487-44d6-9a0d-a0bab51faac6",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65d32eb6-e850-4266-8c92-31961c0f00b7",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "app",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceType\": \"<string>\",\n  \"osType\": \"<string>\",\n  \"trafficType\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc7ecd1a-c5fa-483e-9781-fb0b297ccf4f",
+          "name": "Create placement",
+          "request": {
+            "name": "Create placement",
+            "description": {
+              "content": "Add an ad placement to an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "placement",
+                "create"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    {\n      \"key_0\": 807,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1d37557-a3c2-4a30-9eeb-036a30d892af",
+              "name": "Created placement",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0a29efa-662e-4aea-8702-aca785d8929a",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3449ed9f-041f-4758-a071-cd602240e2cb",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86f03feb-f420-4774-89ce-1a8e498cbd4a",
+              "name": "Insufficient scope for the requested resource",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50eb79cf-7531-4ea4-a458-dfe12076985b",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82fec0aa-6623-4236-a9a0-62cb79e0e0f8",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "create"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63610c42-13a9-4175-9c86-fee33568f8cd",
+          "name": "Update placement",
+          "request": {
+            "name": "Update placement",
+            "description": {
+              "content": "Modify placement settings (incremental updates).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "placement",
+                "update"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": 6576.974294543346\n    },\n    {\n      \"key_0\": 6941.381726176727,\n      \"key_1\": 3747.8468706316426,\n      \"key_2\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83c56643-e1a9-487f-a67b-49eb2589a99f",
+              "name": "Updated placement",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e5564da-6039-48c9-82f7-c74aced55129",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fbc7be9-b2e5-41ac-ba9f-ad5e57f1999e",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5519cbd7-c3b7-4e0d-b3ee-53edf9e433de",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7e940c9-f228-41d2-832e-e2b3733facf9",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "update"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sid\": \"<string>\",\n  \"appId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"floorPrice\": \"<number>\",\n  \"countryFloorPrice\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ],\n  \"sdkAdFormat\": \"<string>\",\n  \"sdkAdTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sdkAdSize\": \"<string>\",\n  \"sdkAutoRefresh\": \"<boolean>\",\n  \"sdkAutoRefreshInterval\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32590511-aff3-4565-bc64-9adc471dd378",
+          "name": "List placements",
+          "request": {
+            "name": "List placements",
+            "description": {
+              "content": "Retrieve placements with optional filtering by app, format, category, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "openapi",
+                "inventory",
+                "v1",
+                "placement",
+                "list"
+              ],
+              "host": [
+                "ofp",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5621bfdb-b95d-4809-997f-937f11c4bf41",
+              "name": "Placement list",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2249,\n  \"data\": {\n    \"totalCount\": 7481,\n    \"list\": [\n      {\n        \"sid\": \"<string>\",\n        \"appId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"floorPrice\": \"<number>\",\n        \"countryFloorPrice\": [\n          {\n            \"key_0\": false,\n            \"key_1\": \"string\",\n            \"key_2\": false,\n            \"key_3\": true\n          },\n          {\n            \"key_0\": 8121\n          }\n        ],\n        \"sdkAdFormat\": \"<string>\",\n        \"sdkAdTypes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sdkAdSize\": \"<string>\",\n        \"sdkAutoRefresh\": \"<boolean>\",\n        \"sdkAutoRefreshInterval\": \"<integer>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"sid\": \"<string>\",\n        \"appId\": \"<string>\",\n        \"name\": \"<string>\",\n        \"floorPrice\": \"<number>\",\n        \"countryFloorPrice\": [\n          {\n            \"key_0\": \"string\"\n          },\n          {\n            \"key_0\": \"string\"\n          }\n        ],\n        \"sdkAdFormat\": \"<string>\",\n        \"sdkAdTypes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sdkAdSize\": \"<string>\",\n        \"sdkAutoRefresh\": \"<boolean>\",\n        \"sdkAutoRefreshInterval\": \"<integer>\",\n        \"status\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6ee940d-5c95-4c70-8c2c-30170a08b30c",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07b5d1c6-b38f-4ca1-b746-275f7a5de06c",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0a116c9-1d36-4b78-8fac-54a930f5a764",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53476df3-ab47-41bb-9b18-423861dc49e9",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "openapi",
+                    "inventory",
+                    "v1",
+                    "placement",
+                    "list"
+                  ],
+                  "host": [
+                    "ofp",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"appType\": \"<string>\",\n  \"sdkAdFormat\": \"<string>\",\n  \"iabCategory\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 977,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ofa.adx.opera.com/oapi/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1bf9f546-f83a-4261-9668-79bf748248bf",
+    "name": "Opera Ads Open Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open API for the Opera Ads advertising platform. Covers the advertiser Report API (daily campaign performance metrics), the publisher Inventory Management API (apps and placements), and the server-to-server Marketing (conversion events) API. Generated by API Evangelist from the public Opera Ads documentation at https://doc.adx.opera.com/ — endpoints, fields, and error codes are transcribed from the docs; contact Opera Ads to obtain an API token.\n\nContact Support:\n Name: Opera Ads",
+      "type": "text/plain"
+    }
+  }
+}

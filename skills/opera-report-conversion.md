@@ -1,7 +1,7 @@
 ---
 name: Report a conversion event to Opera Ads
 description: Send a server-to-server conversion postback to the Opera Ads Marketing API.
-api: openapi/opera-ads-openapi.yml
+api: openapi/opera-marketing-api-openapi.yml
 operations: [reportConversionEvent]
 ---
 

@@ -1,16 +1,29 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: generated
-source: openapi/opera-ads-openapi.yml
+source: openapi/ + conventions/opera-conventions.yml + rate-limits/opera-rate-limits.yml
+note: >-
+  Packaged Agent Skills for the Opera Ads marquee flows. Every operationId
+  referenced below is verified present in the named spec. Opera publishes no
+  skills or AGENTS.md of its own — searched doc.adx.opera.com (87-page map) and
+  github.com/operaads and found none.
 skills:
   - file: opera-daily-campaign-report.md
     name: Pull an Opera Ads daily campaign report
-    api: openapi/opera-ads-openapi.yml
+    api: openapi/opera-report-api-openapi.yml
     operations: [getCampaignDailyReport]
   - file: opera-manage-inventory.md
     name: Register an Opera Ads app and placement
-    api: openapi/opera-ads-openapi.yml
+    api: openapi/opera-inventory-api-openapi.yml
     operations: [createApp, listApps, updateApp, createPlacement, listPlacements, updatePlacement]
   - file: opera-report-conversion.md
     name: Report a conversion event to Opera Ads
-    api: openapi/opera-ads-openapi.yml
+    api: openapi/opera-marketing-api-openapi.yml
     operations: [reportConversionEvent]
+  - file: opera-publisher-revenue-report.md
+    name: Pull an Opera Ads publisher revenue report
+    api: openapi/opera-publisher-report-api-openapi.yml
+    operations: [queryPublisherReport, getInventoryReport]
+  - file: opera-resumable-file-upload.md
+    name: Upload a large file to Opera Ads with resume
+    api: openapi/opera-file-upload-api-openapi.yml
+    operations: [getUploadCapabilities, createUploadSession, uploadChunk, getUploadOffset, cancelUpload, listUploads]

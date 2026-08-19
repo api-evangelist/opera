@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/publisher/web/js-tag +
+  https://doc.adx.opera.com/publisher/web/header-bidding/ +
+  https://doc.adx.opera.com/publisher/app/sdk/
+note: >-
+  Opera Ads' client-side surface is an ad-rendering surface, not a dashboard or
+  form-element library. Three families: a drop-in web JS tag that renders into
+  an <ins> element, header-bidding adapters that plug into Prebid.js and Prebid
+  Server, and the mobile SDK ad views/formats. Distinct from packages/ — the
+  SDK distribution artifacts are recorded there; the renderable surfaces are
+  recorded here.
+families:
+  - name: Web JS Tag
+    kind: script-tag
+    description: >-
+      Opera Ads JS SDK. A single async <script> plus an <ins> element carrying
+      data-adx-slot; the ad renders into the <ins>. Rendering is triggered by
+      pushing the element id onto the global adsbyopera queue.
+    loader: https://res.oa.opera.com/x/oa.js
+    versioning: unpinned — the loader URL carries no version segment
+    embed: |
+      <script src="https://res.oa.opera.com/x/oa.js" async></script>
+      <ins id="ad_1" data-adx-slot="<your-slot-id>" style="display: inline-block; width: 300px;"></ins>
+      <script>(adsbyopera = window.adsbyopera || []).push("ad_1");</script>
+    attributes:
+      - name: data-adx-slot
+        description: Opera Ads placement (slot) ID.
+      - name: id / class="adsbyopera"
+        description: >-
+          Either address a single <ins> by id, or mark elements with the
+          adsbyopera class and push an empty object.
+    guidance: >-
+      Always set an explicit width on the <ins>; display:inline-block is
+      expected. Position with ordinary HTML/CSS.
+    docs: https://doc.adx.opera.com/publisher/web/js-tag
+  - name: Header Bidding adapters
+    kind: bidding-adapter
+    description: >-
+      Opera Ads participates in web header bidding through the standard Prebid
+      stack rather than a proprietary component. The OperaAds bid adapter is
+      built into the Prebid.js download builder and Prebid Server.
+    members:
+      - name: OperaAds Prebid.js bid adapter
+        distribution: https://docs.prebid.org/download.html
+        docs: https://doc.adx.opera.com/publisher/web/header-bidding/prebid-js
+        params: publisherId, endpointId, placementId
+      - name: OperaAds Prebid Server adapter
+        distribution: https://github.com/prebid/prebid-server
+        docs: https://doc.adx.opera.com/publisher/web/header-bidding/prebid-server
+    testing: >-
+      Setting bidfloorprice to zero in the sample imp object returns test ads —
+      see sandbox/opera-sandbox.yml.
+    docs: https://doc.adx.opera.com/publisher/web/header-bidding/
+  - name: Mobile SDK ad surfaces
+    kind: native-view
+    description: >-
+      Renderable ad formats exposed by the Android and iOS SDKs. These are UI
+      components in the host app, configured by placement ID.
+    formats:
+      - Banner (BannerAdView)
+      - Native (NativeAd + MediaView, self-rendering supported)
+      - Native video
+      - Interstitial
+      - Rewarded video
+      - Rewarded interstitial
+      - App Open
+      - Splash (via TradPlus mediation)
+    mediation:
+      android: [AdMob, Google Ad Manager, AppLovin MAX, TopOn, TradPlus, LevelPlay]
+      ios: [AdMob, AppLovin MAX, TopOn, TradPlus, LevelPlay]
+    docs: https://doc.adx.opera.com/publisher/app/sdk/
+not_found:
+  - Embedded/white-label reporting dashboards
+  - Hosted checkout, form, or auth widgets
+  - A published design system or web-component library

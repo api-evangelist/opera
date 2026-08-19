@@ -1,0 +1,219 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/publisher/app/sdk/android/release-note/ +
+  https://doc.adx.opera.com/publisher/app/sdk/ios/release-note/
+note: >-
+  Opera Ads publishes dated release notes for the two publisher SDKs and
+  nothing else. There is NO changelog for the HTTP APIs — the Report,
+  Inventory, OFP Report, DSP Report, Marketing and File Upload references
+  carry no version history, no dated entries and no "what's new". The File
+  Upload API is the one HTTP surface that states a version at all ("Version:
+  1.0.0 — Initial release"). Recent window only; the SDK notes go back to the
+  2.0.0 refactor of 2025-11-05.
+scheme:
+  sdks: semver, dated release notes per version
+  http_apis: uri-path major version (v1); no dated changelog published
+current:
+  android_sdk: 2.14.0
+  ios_sdk: '2.12.1'
+  file_upload_api: 1.0.0
+streams:
+  - name: Opera Ads SDK for Android
+    url: https://doc.adx.opera.com/publisher/app/sdk/android/release-note/
+    current: 2.14.0
+    entries:
+      - version: 2.14.0
+        date: '2026-07-31'
+        breaking: false
+        additions:
+          - 'AdMob mediation adapter: rewarded interstitial support'
+          - 'TopOn mediation adapter: getAdLogoView() for native self-rendering ads'
+        highlights: Mediation adapter feature parity; stability fixes.
+      - version: 2.13.0
+        date: '2026-07-20'
+        breaking: false
+        additions:
+          - 'New callback AdInteractionListener.onAdOpened()'
+          - 'AdBid.getBidId() and BannerAd.bidId'
+        highlights: New fullscreen-open callback and per-bid identifiers.
+      - version: 2.12.0
+        date: '2026-07-15'
+        breaking: false
+        additions:
+          - 'Native video ads: NativeAd.hasVideoContent(), NativeAd.setVideoPlaybackEventListener()'
+        highlights: Video assets in native ads; Open Measurement SDK renewal; isAdInvalidated() now thread-safe.
+      - version: 2.11.0
+        date: '2026-05-11'
+        breaking: false
+        additions:
+          - Dynamic Feature Module (DFM) integration support
+        highlights: >-
+          S2S bidding accepts Base64(GZIP) bid responses; US Privacy string
+          now falls back to IABUSPrivacy_String in shared preferences.
+      - version: 2.10.0
+        date: '2026-04-08'
+        breaking: false
+        additions: []
+        highlights: ANR reduction on startup; TopOn adapters updated for TopOn SDK 6.5.50+.
+      - version: 2.9.0
+        date: '2026-04-01'
+        breaking: false
+        additions:
+          - LevelPlay (IronSource) custom adapter — banner, interstitial, rewarded
+        highlights: LevelPlay mediation; startup and crash-prevention work.
+      - version: 2.8.1
+        date: '2026-03-05'
+        breaking: false
+        additions: []
+        highlights: Ad reporting and analytics optimization.
+      - version: 2.8.0
+        date: '2026-02-12'
+        breaking: false
+        additions:
+          - TopOn C2S (client-side) bidding for Anythink and Secmtp adapters
+        highlights: Client bidding reaches TopOn mediation.
+      - version: 2.7.0
+        date: '2026-02-02'
+        breaking: false
+        additions:
+          - App Open Ad format in AdMob and TopOn mediation
+          - Rewarded Interstitial now generally available to all publishers
+        highlights: Two ad formats promoted to GA.
+      - version: 2.6.0
+        date: '2026-01-22'
+        breaking: false
+        additions:
+          - TradPlus custom adapter — native, banner, interstitial, rewarded, splash
+        highlights: >-
+          Dependency floors lowered (androidx.lifecycle to 2.0.0) for older
+          integrator apps.
+      - version: 2.5.0
+        date: '2026-01-13'
+        breaking: false
+        additions:
+          - App Open Ads generally available
+          - WebM video support
+        highlights: New format GA.
+      - version: 2.4.0
+        date: '2026-01-11'
+        breaking: false
+        additions:
+          - 'Server-Side Verification (SSV) callbacks for rewarded and rewarded interstitial'
+          - TopOn SDK custom adapter (6.5.12+)
+        highlights: >-
+          Introduces the rewarded SSV callback — the one server-to-server
+          event Opera sends OUT to a publisher endpoint.
+      - version: 2.3.0
+        date: '2026-01-08'
+        breaking: false
+        additions:
+          - 'Client bidding (C2S): loadC2SBidAd(), loadC2SBid(), AdBid.getEcpm()/notifyWin()/notifyLose(), LossReason enum'
+        highlights: Full client-side bidding surface.
+      - version: 2.2.2
+        date: '2026-01-04'
+        breaking: false
+        additions:
+          - 'OperaAds.setMuted() audio control'
+          - OkHttp 3.x compatibility alongside 4.x
+        highlights: The okhttp3 build lineage begins here.
+      - version: 2.2.0
+        date: '2025-12-11'
+        breaking: false
+        additions: []
+        highlights: Open Measurement SDK upgraded to 1.6.1; security updates.
+      - version: 2.1.0
+        date: '2025-12-03'
+        breaking: false
+        additions:
+          - 'Server-to-server bidding: getBidToken(), loadRtbAd(), loadRtb()'
+          - TopOn (Anythink) custom event adapter pre-6.5.12
+        highlights: S2S bidding lands.
+      - version: 2.0.1
+        date: '2025-11-16'
+        breaking: false
+        additions: []
+        highlights: androidx.lifecycle downgraded to 2.6.2 for wider AGP compatibility.
+      - version: 2.0.0
+        date: '2025-11-05'
+        breaking: true
+        additions:
+          - Complete SDK refactor — new interaction and rendering mechanisms
+          - AdMob custom event adapter
+        highlights: >-
+          MAJOR. First 2.x release; the entire SDK architecture changed, so
+          1.x integrations do not carry forward.
+  - name: Opera Ads SDK for iOS
+    url: https://doc.adx.opera.com/publisher/app/sdk/ios/release-note/
+    current: '2.12.0'
+    note: >-
+      The docs page lists 2.12.0 (2026-08-03) as the newest entry, but
+      CocoaPods trunk already carries 2.12.1, published 2026-08-13 — the
+      release notes lag the shipped pod. Versions between 2.9.1 and 2.11.1
+      (i.e. 2.10.x) are absent from the published list.
+    entries:
+      - version: 2.12.0
+        date: '2026-08-03'
+        breaking: false
+      - version: 2.11.2
+        date: '2026-06-29'
+        breaking: false
+      - version: 2.11.1
+        date: '2026-05-22'
+        breaking: false
+      - version: 2.9.1
+        date: '2026-04-08'
+        breaking: false
+      - version: 2.9.0
+        date: '2026-04-02'
+        breaking: false
+      - version: 2.8.3
+        date: '2026-03-24'
+        breaking: false
+      - version: 2.8.1
+        date: '2026-03-05'
+        breaking: false
+      - version: 2.8.0
+        date: '2026-02-12'
+        breaking: false
+      - version: 2.7.0
+        date: '2026-02-02'
+        breaking: false
+      - version: 2.6.0
+        date: '2026-01-22'
+        breaking: false
+      - version: 2.5.0
+        date: '2026-01-13'
+        breaking: false
+      - version: 2.4.1
+        date: '2026-01-12'
+        breaking: false
+      - version: 2.4.0
+        date: '2026-01-11'
+        breaking: false
+      - version: 2.3.0
+        date: '2026-01-08'
+        breaking: false
+      - version: 2.2.2
+        date: '2026-01-04'
+        breaking: false
+      - version: 2.2.0
+        date: '2025-12-11'
+        breaking: false
+      - version: 2.1.0
+        date: '2025-12-03'
+        breaking: false
+      - version: 2.0.1
+        date: '2025-11-16'
+        breaking: false
+      - version: 2.0.0
+        date: '2025-11-05'
+        breaking: true
+gaps:
+  - >-
+    No changelog exists for any Opera Ads HTTP API. Report, Inventory, OFP
+    Report, DSP Report and Marketing pages carry no version history at all.
+  - >-
+    The docs site records a per-page lastUpdated timestamp (VitePress) but does
+    not surface it as a changelog; the API reference pages last changed
+    2026-01-09.

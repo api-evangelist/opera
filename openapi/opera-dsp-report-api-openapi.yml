@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Opera ADX DSP Report API
+  version: v1
+  description: >-
+    Demand-side (DSP) performance reporting for the Opera ADX exchange. Returns
+    daily impression, request, fill and revenue counts for a partner DSP over a
+    date range of at most 180 consecutive days. Authentication is a `token`
+    query parameter issued by Opera. Transcribed by API Evangelist from the
+    public Opera Ads documentation at https://doc.adx.opera.com/adx/dsp/report-api.
+  contact:
+    name: Opera Ads
+    url: https://doc.adx.opera.com/
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://doc.adx.opera.com/adx/dsp/report-api
+servers:
+  - url: https://cms-adx.op-mobile.opera.com
+    description: Opera ADX CMS host
+tags:
+  - name: DSPReport
+    description: DSP-side exchange performance reporting.
+paths:
+  /oapi/report/dsp:
+    get:
+      tags: [DSPReport]
+      operationId: getDspReport
+      summary: Get DSP performance report
+      description: >-
+        Pull daily DSP performance data (impressions, requests, fills, revenue)
+        for a date range. The range must be less than 180 days and dates must
+        use zero-padded YYYY-MM-DD form.
+      parameters:
+        - name: token
+          in: query
+          required: true
+          description: DSP report token issued by Opera.
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          required: true
+          description: Start date (YYYY-MM-DD, zero-padded).
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: true
+          description: End date (YYYY-MM-DD, zero-padded).
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: >-
+            Report envelope. The business outcome is carried in `statusCode`:
+            0 ok, 1 invalid parameters, 2 invalid token, 3 too many requests
+            (QPS limiter), 4 internal error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DspReportResponse'
+components:
+  schemas:
+    DspReportRow:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        impressionCount:
+          type: integer
+        requestCount:
+          type: integer
+        fillCount:
+          type: integer
+        revenue:
+          type: string
+          description: Revenue as a decimal string, in US dollars.
+    DspReportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DspReportRow'
+        message:
+          type: string
+        statusCode:
+          type: integer
+          description: >-
+            0 = Ok; 1 = Invalid parameters (bad date format or range >= 180 days);
+            2 = Invalid token; 3 = Too many requests (blocked by QPS limiter);
+            4 = Internal error.

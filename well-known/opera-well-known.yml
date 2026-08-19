@@ -1,25 +1,184 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: live probes of Opera hosts
+source: live probes of every Opera apis.yml + OpenAPI servers[] host
+note: >-
+  Two real documents served: a PGP-signed RFC 9116 security.txt at the opera.com
+  apex (saved verbatim as opera-security.txt) and a real llms.txt at
+  www.opera.com (saved verbatim as ../llms/opera-llms.txt). Everything else is
+  a miss. IMPORTANT — ofa.adx.opera.com and ofp.adx.opera.com are single-page
+  apps whose catch-all answers HTTP 200 with an HTML shell for EVERY
+  /.well-known/* path; those 200s are recorded below as misses, not documents.
+  cms-adx.op-mobile.opera.com 301s every path to a redirect page. No agent card
+  was found on any host, at either the current or the legacy path.
 hosts:
   - host: https://opera.com
     documents:
       - path: /.well-known/security.txt
         status: 200
         file: opera-security.txt
+        real_document: true
+        note: RFC 9116, PGP-signed, Expires 2027-04-17.
+      - path: /llms.txt
+        status: 200
+        file: ../llms/opera-llms.txt
+        real_document: true
+        note: Provider-published llms.txt covering the Opera browser products.
       - path: /.well-known/openid-configuration
-        status: 301
-  - host: https://ofa.adx.opera.com
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.opera.com
     documents:
+      - path: /.well-known/security.txt
+        status: 301
+        note: Redirects to https://opera.com/.well-known/security.txt.
+      - path: /llms.txt
+        status: 200
+        real_document: true
+        note: Same document as the apex; saved once.
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://ofa.adx.opera.com
+    spa_catchall: true
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        real_document: false
+        note: SPA HTML shell, not a document.
       - path: /.well-known/oauth-authorization-server
         status: 200
-        note: returns SPA HTML, not an RFC 8414 metadata document
+        real_document: false
+        note: SPA HTML shell, not an RFC 8414 metadata document.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        real_document: false
       - path: /.well-known/api-catalog
         status: 200
-        note: returns SPA HTML, not an RFC 9727 API catalog
-  - host: https://doc.adx.opera.com
-    documents:
+        real_document: false
+        note: SPA HTML shell, not an RFC 9727 API catalog.
       - path: /.well-known/ai-plugin.json
+        status: 200
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 200
+        real_document: false
+        note: SPA HTML shell — rejected, not an agent card.
+      - path: /.well-known/agent.json
+        status: 200
+        real_document: false
+      - path: /llms.txt
+        status: 200
+        real_document: false
+  - host: https://ofp.adx.opera.com
+    spa_catchall: true
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        real_document: false
+      - path: /.well-known/openid-configuration
+        status: 200
+        real_document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        real_document: false
+      - path: /.well-known/api-catalog
+        status: 200
+        real_document: false
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 200
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 200
+        real_document: false
+      - path: /llms.txt
+        status: 200
+        real_document: false
+  - host: https://cb.adx.opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
         status: 404
       - path: /llms.txt
         status: 404
+  - host: https://cms-adx.op-mobile.opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+      - path: /.well-known/agent-card.json
+        status: 301
+      - path: /.well-known/agent.json
+        status: 301
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /llms.txt
+        status: 301
+  - host: https://res.oa.opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://doc.adx.opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://admanager.opera.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+agent_card:
+  found: false
+  hosts_probed: 9
+  paths_probed: [/.well-known/agent-card.json, /.well-known/agent.json]
+  note: >-
+    No A2A agent card. Every 200 returned was an SPA HTML shell and was
+    rejected. No a2a/ artifact was written and no AgentCard pointer was emitted.
+checked: '2026-08-13'

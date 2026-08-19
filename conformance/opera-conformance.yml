@@ -1,25 +1,109 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/opera-ads-openapi.yml + https://doc.adx.opera.com/adx/openrtb/
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/adx/openrtb/ +
+  https://doc.adx.opera.com/advertiser/file_upload_api +
+  https://doc.adx.opera.com/publisher/web/header-bidding/ +
+  https://doc.adx.opera.com/publisher/app/sdk/ + https://github.com/operaads
+note: >-
+  Opera Ads conforms to the AD-TECH standards stack (OpenRTB, VAST, Prebid,
+  Open Measurement, IAB taxonomy, US Privacy) and to TUS for uploads. It
+  conforms to essentially NONE of the general API standards — no OAuth, no
+  OpenID Connect, no RFC 9457 problem details, no RFC 9116 on the API hosts,
+  no RFC 8594 deprecation, no RFC 9239 rate-limit headers. No named security
+  or compliance CERTIFICATION (SOC 2, ISO 27001, PCI DSS, FedRAMP) is
+  published anywhere on opera.com or security.opera.com, so no Compliance
+  pointer is emitted and no trust-center artifact was written.
 standards:
   - id: openrtb
     conforms: true
     evidence: >-
-      Opera Ads publishes an OpenRTB integration guide and first-party OpenRTB
-      protocol definitions (github.com/operaads/openrtb); ADX supports standard
-      auction macros (${AUCTION_PRICE} etc.).
+      Opera publishes an OpenRTB integration guide for the ADX exchange with
+      documented extensions (deeplink, SKOverlay, Google Play inline install,
+      autostore kit, end cards, rewarded, metrics) and LURL/NURL handling, plus
+      first-party Go protocol definitions at github.com/operaads/openrtb.
   - id: vast-3.0
     conforms: true
-    evidence: First-party Golang VAST 3.0 library (github.com/operaads/vast) for video ad serving.
+    evidence: First-party Golang VAST 3.0 library at github.com/operaads/vast for video ad serving.
+  - id: prebid
+    conforms: true
+    evidence: >-
+      OperaAds bid adapter is available in the Prebid.js download builder and in
+      Prebid Server; Opera documents both integrations with publisherId /
+      endpointId / placementId parameters.
+  - id: iab-open-measurement
+    conforms: true
+    evidence: >-
+      Android SDK release notes record the Open Measurement (OM) SDK at 1.6.1
+      (2.2.0, 2025-12-11) and a further OM SDK renewal in 2.12.0 (2026-07-15).
   - id: iab-content-taxonomy
     conforms: true
     evidence: Inventory Management API uses iabCategory fields for apps and placements.
+  - id: iab-us-privacy
+    conforms: true
+    evidence: >-
+      SDK reads IABUSPrivacy_String from default shared preferences when the US
+      Privacy string is not set explicitly (Android 2.11.0, 2026-05-11).
+  - id: app-ads-txt
+    conforms: true
+    evidence: App entries carry an appAdsTxtLink field in the Inventory Management API.
   - id: coppa
     conforms: true
     evidence: App entries carry a coppaCompliant flag.
+  - id: gdpr
+    conforms: true
+    evidence: >-
+      SDK best-practice guidance instructs publishers to collect and pass
+      GDPR/CCPA consent before initializing; Opera publishes a privacy policy
+      at opera.com/privacy.
+  - id: tus-1.0.0
+    conforms: true
+    evidence: >-
+      File Upload API implements the TUS resumable upload protocol 1.0.0 and
+      advertises Tus-Version, Tus-Resumable, Tus-Extension
+      (creation, creation-with-upload, termination, concatenation,
+      creation-defer-length) and Tus-Max-Size on OPTIONS /upload/files.
+  - id: rfc9116-security-txt
+    conforms: partial
+    evidence: >-
+      A PGP-signed RFC 9116 security.txt is served at the opera.com apex, but
+      none of the API hosts (ofa/ofp/cb/cms-adx) serves one.
   - id: oauth2
     conforms: false
-    evidence: Auth is a contact-issued static bearer token, not an OAuth2 flow.
+    evidence: >-
+      No OAuth anywhere. Auth is a contact-issued static bearer token, a token
+      query parameter, an X-API-Key, or an HMAC signature.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery document on any host (all 404 or SPA HTML).
   - id: rfc9457-problem-details
     conforms: false
-    evidence: Errors use a { code, message } business envelope, not application/problem+json.
+    evidence: >-
+      Errors use business-code envelopes ({code,message}, {code,msg},
+      {statusCode,message}, {error}), not application/problem+json.
+  - id: rfc8594-sunset
+    conforms: false
+    evidence: No Sunset or Deprecation headers and no deprecation policy.
+  - id: rfc9239-ratelimit-headers
+    conforms: false
+    evidence: >-
+      No RateLimit-* or X-RateLimit-* headers and no Retry-After are documented
+      on any endpoint; only a bare 429 or a statusCode 3 in a 200 body.
+  - id: rfc9727-api-catalog
+    conforms: false
+    evidence: /.well-known/api-catalog 404s or returns an SPA shell on every host.
+  - id: a2a
+    conforms: false
+    evidence: >-
+      No agent card at /.well-known/agent-card.json or /.well-known/agent.json
+      on any of nine probed hosts.
+  - id: mcp
+    conforms: false
+    evidence: No MCP server; mcp.opera.com and mcp.adx.opera.com do not resolve.
+certifications:
+  published: []
+  note: >-
+    Searched opera.com, security.opera.com and security.opera.com/policy/. No
+    SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim is published. A bug
+    bounty (Bugcrowd) and a responsible-disclosure policy are published and are
+    captured in security/opera-vulnerability-disclosure.yml.

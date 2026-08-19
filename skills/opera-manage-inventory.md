@@ -1,7 +1,7 @@
 ---
 name: Register an Opera Ads app and placement
 description: Create and manage publisher inventory (apps and ad placements) via the Opera Ads Inventory Management API.
-api: openapi/opera-ads-openapi.yml
+api: openapi/opera-inventory-api-openapi.yml
 operations: [createApp, listApps, updateApp, createPlacement, listPlacements, updatePlacement]
 ---
 

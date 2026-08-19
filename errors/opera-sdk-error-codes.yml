@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: https://doc.adx.opera.com/publisher/app/sdk/ios/integration/
+format: sdk-error-registry
+note: >-
+  The publisher SDK error registry, distinct from the HTTP problem types in
+  errors/opera-problem-types.yml. Codes are surfaced through OpAdxAdError (iOS)
+  and com.opera.ads.AdError (Android) with `code` and `message` fields; the
+  numbering is shared across both SDKs. Classes: load (-1..6), show (101..104),
+  bidding (201..). Every row below is transcribed verbatim from Opera's iOS
+  integration reference, including Opera's own remediation text.
+envelope:
+  ios_class: OpAdxAdError
+  android_class: com.opera.ads.AdError
+  fields: [code, message]
+classes:
+  - name: load
+    range: -1 to 6
+    surfaced_by: onAdFailedToLoad / onAdLoadFailed
+  - name: show
+    range: 101 to 104
+    surfaced_by: onAdFailedToShow
+  - name: bidding
+    range: 201+
+    surfaced_by: client/server bidding callbacks
+error_codes:
+  - code: -1
+    name: UNKNOWN_ERROR
+    class: load
+    meaning: Unknown error
+    action: Check logs for details
+  - code: 1
+    name: ILLEGAL_API_CALL
+    class: load
+    meaning: Illegal call to SDK API
+    action: Ensure SDK is initialized before loading ads
+  - code: 2
+    name: INVALID_PARAMETER
+    class: load
+    meaning: Invalid parameter
+    action: Check placement ID and other parameters
+  - code: 3
+    name: ASSETS_ERROR
+    class: load
+    meaning: Ad assets error
+    action: Retry loading; contact support if persistent
+  - code: 4
+    name: NETWORK_ERROR
+    class: load
+    meaning: Network connection failed
+    action: Check internet connectivity
+  - code: 5
+    name: NO_FILL
+    class: load
+    meaning: No ad available to show
+    action: Normal occurrence, try again later
+    expected: true
+  - code: 6
+    name: SDK_INITIALIZATION_ERROR
+    class: load
+    meaning: SDK initialization error
+    action: Verify Application ID and network access
+  - code: 101
+    name: SHOW_AD_REUSED
+    class: show
+    meaning: Ad instance has already been shown
+    action: Create and load a new ad instance
+  - code: 102
+    name: SHOW_AD_NOT_FOREGROUND
+    class: show
+    meaning: App is not in the foreground
+    action: Only show ads when the app is active
+  - code: 103
+    name: SHOW_AD_INVALIDATED
+    class: show
+    meaning: Ad has expired or been invalidated
+    action: Load a fresh ad
+  - code: 104
+    name: SHOW_AD_START_ACTIVITY_ERROR
+    class: show
+    meaning: Failed to present ad view controller
+    action: Ensure the presenting view controller is valid
+  - code: 201
+    name: BID_RESP_DEBUGGING_NOT_ALLOWED
+    class: bidding
+    meaning: Bid response debugging not allowed
+    action: Use production bid responses

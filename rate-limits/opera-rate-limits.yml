@@ -1,0 +1,86 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://doc.adx.opera.com/advertiser/report-api +
+  https://doc.adx.opera.com/publisher/inventory-management-api +
+  https://doc.adx.opera.com/publisher/ofp/report +
+  https://doc.adx.opera.com/adx/dsp/report-api +
+  https://doc.adx.opera.com/advertiser/file_upload_api
+limit_count: 3
+note: >-
+  Opera Ads publishes ONE numeric limit — 100 requests per minute on the
+  advertiser Report API. Every other API says only "requests are subject to
+  rate limiting" and returns 429. NO rate-limit response headers are documented
+  anywhere in the Opera Ads reference: there is no X-RateLimit-*, no RFC 9239
+  RateLimit-*, and no Retry-After. An agent therefore cannot read its remaining
+  budget from a response and must infer exhaustion from the 429 / statusCode 3
+  alone. The published request-shape ceilings (query window, page size, file
+  size) are recorded separately below because they behave as hard limits even
+  though they are not throughput limits.
+rate_limits:
+  - api: Opera Report API
+    endpoint: POST https://ofa.adx.opera.com/oapi/v1/report/campaign_daily
+    scope: per-token
+    window: 1m
+    limit: 100
+    burst: null
+    status_on_exhaustion: 429
+    body_signal: 'code: 3 ("too many request")'
+    headers: []
+    retry_after: false
+    guidance: Back off and retry with exponential backoff.
+    source: https://doc.adx.opera.com/advertiser/report-api
+  - api: Opera ADX DSP Report API
+    endpoint: GET https://cms-adx.op-mobile.opera.com/oapi/report/dsp
+    scope: per-token
+    window: null
+    limit: null
+    burst: null
+    status_on_exhaustion: 200
+    body_signal: 'statusCode: 3 ("Too many request", blocked by qps limiter)'
+    headers: []
+    retry_after: false
+    guidance: >-
+      A QPS limiter is documented but no number is published. Note the envelope
+      quirk — the DSP Report API signals throttling INSIDE a 200 response body
+      via statusCode 3, not with an HTTP 429.
+    source: https://doc.adx.opera.com/adx/dsp/report-api
+  - api: Opera Inventory API / Opera Publisher (OFP) Report API
+    endpoint: https://ofp.adx.opera.com/openapi/...
+    scope: per-token
+    window: null
+    limit: null
+    burst: null
+    status_on_exhaustion: 429
+    body_signal: null
+    headers: []
+    retry_after: false
+    guidance: >-
+      Documented as "subject to rate limiting" with a 429 on exhaustion and a
+      recommendation to implement retry with exponential backoff. No number.
+    source: https://doc.adx.opera.com/publisher/inventory-management-api
+request_shape_limits:
+  - api: Opera Report API
+    limit: Date range max 90 days per query
+    source: https://doc.adx.opera.com/advertiser/report-api
+  - api: Opera Report API
+    limit: page_size default 50, max 1000
+    source: https://doc.adx.opera.com/advertiser/report-api
+  - api: Opera ADX DSP Report API
+    limit: Date range max 180 consecutive days (statusCode 1 beyond that)
+    source: https://doc.adx.opera.com/adx/dsp/report-api
+  - api: Opera File Upload API
+    limit: Maximum single file 4 GB (413 at session creation beyond that)
+    source: https://doc.adx.opera.com/advertiser/file_upload_api
+  - api: Opera File Upload API
+    limit: Maximum chunk 256 MB (gateway hard limit, 413); minimum chunk 5 MB except the final chunk (400)
+    source: https://doc.adx.opera.com/advertiser/file_upload_api
+  - api: Opera File Upload API
+    limit: Total storage per customer 500 GB
+    source: https://doc.adx.opera.com/advertiser/file_upload_api
+  - api: Opera File Upload API
+    limit: Upload session expires after 7 days; HMAC timestamp window ±300 seconds
+    source: https://doc.adx.opera.com/advertiser/file_upload_api
+  - api: Opera File Upload API (list)
+    limit: page_size default 20, max 100
+    source: https://doc.adx.opera.com/advertiser/file_upload_api

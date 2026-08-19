@@ -1,7 +1,7 @@
 ---
 name: Pull an Opera Ads daily campaign report
 description: Authenticate to the Opera Ads Report API and retrieve daily performance metrics for advertiser campaigns.
-api: openapi/opera-ads-openapi.yml
+api: openapi/opera-report-api-openapi.yml
 operations: [getCampaignDailyReport]
 ---
 

@@ -1,0 +1,385 @@
+{
+  "item": [
+    {
+      "id": "29022894-8414-403c-ae42-62f1aa0df88a",
+      "name": "Report",
+      "description": {
+        "content": "Advertiser reporting on campaign performance.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92ebbf55-467c-472a-a26c-dd8ee413afe2",
+          "name": "Get daily campaign report",
+          "request": {
+            "name": "Get daily campaign report",
+            "description": {
+              "content": "Retrieve daily report data for advertiser campaigns including impressions, clicks, conversions and spend, filtered by day range and optionally by order, line item, or creative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "oapi",
+                "v1",
+                "report",
+                "campaign_daily"
+              ],
+              "host": [
+                "ofa",
+                "adx",
+                "opera",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fe082f7-3df5-467c-9578-6266a00d4204",
+              "name": "Report data",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "oapi",
+                    "v1",
+                    "report",
+                    "campaign_daily"
+                  ],
+                  "host": [
+                    "ofa",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3429,\n  \"message\": \"string\",\n  \"data\": {\n    \"page\": 7296,\n    \"page_size\": 1235,\n    \"total\": 586,\n    \"list\": [\n      {\n        \"key_0\": 1937.7111848111017,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      {\n        \"key_0\": 62.44819508518851\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bc99eaa-f87c-480f-b583-67ecf86f4e63",
+              "name": "Invalid parameters (envelope code 1)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "oapi",
+                    "v1",
+                    "report",
+                    "campaign_daily"
+                  ],
+                  "host": [
+                    "ofa",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1742,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c6cb9b1-dca9-4509-b620-833263485b60",
+              "name": "Missing or invalid token (envelope code 2)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "oapi",
+                    "v1",
+                    "report",
+                    "campaign_daily"
+                  ],
+                  "host": [
+                    "ofa",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1742,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c056acd2-4645-4b95-bebe-3d87643bd261",
+              "name": "Rate limit exceeded (envelope code 3)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "oapi",
+                    "v1",
+                    "report",
+                    "campaign_daily"
+                  ],
+                  "host": [
+                    "ofa",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1742,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1804814-2a4f-4a0a-b96d-ab757dff0f0f",
+              "name": "Server error (envelope code 4)",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "oapi",
+                    "v1",
+                    "report",
+                    "campaign_daily"
+                  ],
+                  "host": [
+                    "ofa",
+                    "adx",
+                    "opera",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": [\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"day\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"order_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"lineitem_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"creative_id\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"measurements\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": 1,\n  \"page_size\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1742,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ofa.adx.opera.com/oapi/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "70eae3b3-99ff-40ba-a466-510b5ec1e6e5",
+    "name": "Opera Ads Open Inventory Report API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open API for the Opera Ads advertising platform. Covers the advertiser Report API (daily campaign performance metrics), the publisher Inventory Management API (apps and placements), and the server-to-server Marketing (conversion events) API. Generated by API Evangelist from the public Opera Ads documentation at https://doc.adx.opera.com/ — endpoints, fields, and error codes are transcribed from the docs; contact Opera Ads to obtain an API token.\n\nContact Support:\n Name: Opera Ads",
+      "type": "text/plain"
+    }
+  }
+}

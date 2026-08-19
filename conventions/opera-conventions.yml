@@ -1,38 +1,156 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
 source: https://doc.adx.opera.com/
 note: >-
-  Cross-cutting request/response semantics for the Opera Ads Open API, harvested
-  from the docs and derived from openapi/opera-ads-openapi.yml.
+  Cross-cutting request/response semantics for the Opera Ads Open APIs,
+  harvested from doc.adx.opera.com and derived from the specs in openapi/.
+  THE HEADLINE FINDING IS INCONSISTENCY: six APIs on five hosts use four auth
+  schemes, three different pagination styles and three different success
+  envelopes. An agent cannot learn one Opera Ads convention and apply it
+  everywhere — the shape must be selected per endpoint.
 authentication:
-  style: bearer-token
+  style: mixed
+  primary: bearer-token
   header: Authorization
   format: 'Bearer <token>'
-  issuance: contact Opera Ads for a token (not self-serve OAuth)
+  issuance: contact Opera Ads for a token (no self-serve OAuth, no scopes)
+  variants:
+    - bearer header (Report, Inventory, OFP Report)
+    - token query parameter (DSP Report, legacy SSP report)
+    - X-API-Key header, adx_ prefix (File Upload)
+    - HMAC-SHA256 signature headers (File Upload, preferred)
+    - unauthenticated cvid + click_id (Marketing postback)
   see: authentication/opera-authentication.yml
+hosts:
+  note: >-
+    There is no single API base. Each API lives on its own host, and the
+    documentation is the only place the mapping is stated.
+  map:
+    - api: Report API
+      base: https://ofa.adx.opera.com/oapi/v1
+    - api: Inventory Management API
+      base: https://ofp.adx.opera.com/openapi/inventory/v1
+    - api: Publisher (OFP) Report API
+      base: https://ofp.adx.opera.com/openapi/report/v1
+    - api: Legacy SSP report
+      base: https://ofp.adx.opera.com/openapi/reports
+    - api: DSP Report API
+      base: https://cms-adx.op-mobile.opera.com/oapi/report
+    - api: Marketing (conversion) API
+      base: https://cb.adx.opera.com/marketing
+    - api: File Upload API
+      base: https://<customer-host>/upload
 request:
   transport: JSON over HTTPS
-  method: POST (all Open API operations use POST bodies)
-  content_type: application/json
+  method: >-
+    POST with a JSON body for Report, Inventory and OFP Report; GET with query
+    parameters for the DSP and legacy SSP reports; GET or POST for the
+    Marketing postback; TUS verbs (OPTIONS/POST/PATCH/HEAD/DELETE) for uploads.
+  content_type: application/json (application/offset+octet-stream for upload chunks)
+query_model:
+  style: filters-and-measurements
+  description: >-
+    The two modern report APIs share a query language: `filters[]` of
+    {name, value} (a `day` filter is mandatory) and `measurements[]` naming
+    dimensions and metrics. Report API takes measurements as a plain string
+    array; OFP Report takes objects with a per-measurement `sort`.
+  see: openapi/opera-report-api-openapi.yml
 pagination:
-  style: page-number
-  request_params: [page, page_size]
-  defaults: { page: 1, page_size: 50 }
-  max_page_size: 1000
-  response_fields: [page, page_size, total, list]
+  styles:
+    - api: Report API
+      style: page-number
+      request_params: [page, page_size]
+      defaults: { page: 1, page_size: 50 }
+      max_page_size: 1000
+      response_object: pagination
+      response_fields: [page, page_size, total_count, total_pages]
+    - api: Publisher (OFP) Report API
+      style: offset-limit
+      request_params: [offset, limit]
+      defaults: { offset: 0 }
+      response_fields: [total]
+      note: limit is REQUIRED — omitting it is not "return everything".
+    - api: File Upload API (list)
+      style: page-number
+      request_params: [page, page_size]
+      defaults: { page: 1, page_size: 20 }
+      max_page_size: 100
+    - api: DSP / legacy SSP reports
+      style: none
+      note: No pagination; the whole date range comes back in one response.
 error_envelope:
-  fields: [code, message]
-  success_code: 0
+  styles:
+    - api: Report API
+      fields: [code, message]
+      success_code: 0
+      note: HTTP status mirrors the business code (400/401/429/500).
+    - api: Inventory / OFP Report
+      fields: [code, msg, data]
+      success_code: 0
+      note: >-
+        Same idea, different field name (`msg`, not `message`), and the OFP
+        query endpoint's SUCCESS response uses yet another shape:
+        {message, rows, statusCode, total}.
+    - api: DSP Report API
+      fields: [data, message, statusCode]
+      success_code: 0
+      note: >-
+        Returns HTTP 200 even for invalid token and for throttling; the
+        outcome is only in `statusCode`. An agent that checks HTTP status
+        alone will read failures as successes.
+    - api: File Upload API
+      fields: [error]
+      note: 'Plain {"error": "..."} object with a meaningful HTTP status.'
+  rfc9457: false
   see: errors/opera-problem-types.yml
 rate_limiting:
   report_api: 100 requests per minute
-  signal: HTTP 429 Too Many Requests
-  guidance: implement exponential backoff on 429
-  see: errors/opera-problem-types.yml
+  signal: HTTP 429 (code 3) — except the DSP Report API, which signals statusCode 3 inside a 200
+  headers: none published (no X-RateLimit-*, no RateLimit-*, no Retry-After)
+  guidance: implement exponential backoff
+  see: rate-limits/opera-rate-limits.yml
 idempotency:
   supported: false
-  note: No idempotency-key header is documented by Opera Ads.
+  header: null
+  note: >-
+    No idempotency key is documented on any Opera Ads API. The one idempotent
+    operation Opera names explicitly is DELETE on an upload session, which is
+    idempotent by protocol (TUS), not by an idempotency key. Retrying a
+    conversion postback or an app/placement create is not made safe by the API.
+  exception:
+    operation: cancelUpload (DELETE /upload/files/{id})
+    reason: TUS termination extension — repeat calls return 204 without further action.
+resumability:
+  protocol: TUS 1.0.0
+  applies_to: File Upload API
+  extensions: [creation, creation-with-upload, termination, concatenation, creation-defer-length]
+  note: >-
+    The strongest runtime-semantics work Opera has published. Upload-Offset from
+    HEAD is the authoritative resume point; HEAD may block 1–3 minutes after an
+    interrupted chunk and that is documented as expected, not an error.
+  see: openapi/opera-file-upload-api-openapi.yml
+tracing:
+  request_id: false
+  note: No request-id or correlation header is documented on any Opera Ads API.
+expansion:
+  sparse_fields: >-
+    Effectively yes, via `measurements` — the caller names which fields come
+    back. There is no ?expand= or ?fields= convention.
+metadata:
+  custom_fields: >-
+    Upload-Metadata on the File Upload API (base64 name/value pairs). No
+    metadata bag on the reporting or inventory resources.
 versioning:
   scheme: uri-path
   current: v1
+  note: >-
+    Report /oapi/v1, Inventory /openapi/inventory/v1, OFP Report
+    /openapi/report/v1. The DSP report, legacy SSP report and Marketing
+    postback carry NO version segment at all.
   see: lifecycle/opera-lifecycle.yml
+date_conventions:
+  report_filters: YYYYMMDD strings in a two-element array (Report, OFP Report)
+  legacy_reports: YYYY-MM-DD, zero-padded and validated (DSP, SSP)
+  max_windows:
+    report_api: 90 days
+    dsp_report: 180 days

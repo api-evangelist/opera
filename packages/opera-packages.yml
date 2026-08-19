@@ -1,37 +1,163 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://github.com/operaads
+source: >-
+  https://doc.adx.opera.com/publisher/app/sdk/ + https://github.com/operaads +
+  registry metadata (artifact.op-mobile.opera.com Maven, trunk.cocoapods.org)
+note: >-
+  Opera Ads does not publish client libraries to npm, PyPI, Maven Central,
+  NuGet, RubyGems, Packagist or crates.io. The Android SDK is distributed from
+  Opera's OWN self-hosted Maven repository (https://artifact.op-mobile.opera.com/releases),
+  the iOS SDK and every mediation adapter ship through CocoaPods trunk, and the
+  Go libraries are consumed straight from GitHub. Versions and dates below were
+  read from each registry's metadata endpoint on the generated date.
 packages:
-  - language: go
-    registry: github
-    name: operaads/api-client
-    url: https://github.com/operaads/api-client
-    install: go get github.com/operaads/api-client
+  - language: java
+    registry: maven
+    registry_url: https://artifact.op-mobile.opera.com/releases
+    name: com.opera:opera-ads
+    url: https://doc.adx.opera.com/publisher/app/sdk/android/integration/
+    install: "implementation 'com.opera:opera-ads:+'"
     official: true
-    description: First-party Go client for the Opera Ads platform (interceptor/proxy/request/response).
+    version: 2.14.0
+    published: '2026-07-31'
+    description: >-
+      Opera Ads Android SDK (OpAdxSdk). Requires minSdk 24. Not on Maven
+      Central — add maven { url 'https://artifact.op-mobile.opera.com/releases' }.
+    source: https://artifact.op-mobile.opera.com/releases/com/opera/opera-ads/maven-metadata.xml
+  - language: java
+    registry: maven
+    registry_url: https://artifact.op-mobile.opera.com/releases
+    name: com.opera:opera-ads-okhttp3
+    url: https://doc.adx.opera.com/publisher/app/sdk/android/integration/
+    install: "implementation 'com.opera:opera-ads-okhttp3:+'"
+    official: true
+    version: 2.14.0
+    published: '2026-07-31'
+    description: OkHttp 3.x compatible build of the Opera Ads Android SDK (default build targets OkHttp 4.x).
+    source: https://artifact.op-mobile.opera.com/releases/com/opera/opera-ads-okhttp3/maven-metadata.xml
+  - language: objective-c
+    registry: cocoapods
+    name: OpAdxSdk
+    url: https://github.com/operaads/iOS-sdk
+    install: "pod 'OpAdxSdk'"
+    official: true
+    version: 2.12.1
+    published: '2026-08-13'
+    description: Opera Ads iOS SDK (OpAdxSdk) for publishers monetizing iOS apps.
+    source: https://trunk.cocoapods.org/api/v1/pods/OpAdxSdk
+  - language: objective-c
+    registry: cocoapods
+    name: GMAOperaSDKAdapter
+    url: https://github.com/operaads/GMAOperaSDKAdapter
+    install: "pod 'GMAOperaSDKAdapter'"
+    official: true
+    version: 2.9.1.0
+    published: '2026-04-09'
+    description: Opera Ads adapter for Google Mobile Ads (AdMob) mediation on iOS.
+    source: https://trunk.cocoapods.org/api/v1/pods/GMAOperaSDKAdapter
+  - language: objective-c
+    registry: cocoapods
+    name: ALMAXOperaSDKAdapter
+    url: https://github.com/operaads/ALMAXOperaSDKAdapter
+    install: "pod 'ALMAXOperaSDKAdapter'"
+    official: true
+    version: 2.9.1.0
+    published: '2026-04-09'
+    description: Opera Ads adapter for AppLovin MAX mediation on iOS.
+    source: https://trunk.cocoapods.org/api/v1/pods/ALMAXOperaSDKAdapter
+  - language: objective-c
+    registry: cocoapods
+    name: IronSourceOperaSDKAdapter
+    url: https://github.com/operaads/IronSourceOperaSDKAdapter
+    install: "pod 'IronSourceOperaSDKAdapter'"
+    official: true
+    version: 2.12.1.0
+    published: '2026-08-13'
+    description: Opera Ads adapter for IronSource / Unity LevelPlay mediation on iOS.
+    source: https://trunk.cocoapods.org/api/v1/pods/IronSourceOperaSDKAdapter
+  - language: objective-c
+    registry: cocoapods
+    name: TradPlusOperaSDKAdapter
+    url: https://github.com/operaads/TradPlusOperaSDKAdapter
+    install: "pod 'TradPlusOperaSDKAdapter'"
+    official: true
+    version: 2.12.1.0
+    published: '2026-08-13'
+    description: Opera Ads adapter for TradPlus mediation on iOS.
+    source: https://trunk.cocoapods.org/api/v1/pods/TradPlusOperaSDKAdapter
+  - language: objective-c
+    registry: cocoapods
+    name: TPNiOSOperaSDKAdapter
+    url: https://github.com/operaads/TPNiOSOperaSDKAdapter
+    install: "pod 'TPNiOSOperaSDKAdapter'"
+    official: true
+    version: 2.9.1.0
+    published: '2026-04-09'
+    description: Opera Ads adapter for TopOn (TPN) mediation on iOS.
+    source: https://trunk.cocoapods.org/api/v1/pods/TPNiOSOperaSDKAdapter
   - language: go
     registry: github
     name: operaads/openrtb
     url: https://github.com/operaads/openrtb
     install: go get github.com/operaads/openrtb
     official: true
-    description: OpenRTB protocol definitions for Go, published by Opera Ads.
+    version: null
+    published: '2026-08-11'
+    description: >-
+      OpenRTB protocol definitions for Go, published by Opera Ads. `published`
+      is the last push to the default branch — the repo publishes no tagged
+      release and is not on a module proxy under this path, so there is no
+      registry version to record.
+    source: https://api.github.com/repos/operaads/openrtb
   - language: go
     registry: github
     name: operaads/vast
     url: https://github.com/operaads/vast
     install: go get github.com/operaads/vast
     official: true
-    description: Golang VAST 3.0 library for Opera Ads video ad serving.
+    version: null
+    published: '2026-05-12'
+    description: >-
+      Golang VAST 3.0 library for Opera Ads video ad serving. No tagged release;
+      `published` is the last push.
+    source: https://api.github.com/repos/operaads/vast
+  - language: go
+    registry: github
+    name: operaads/api-client
+    url: https://github.com/operaads/api-client
+    install: go get github.com/operaads/api-client
+    official: true
+    version: null
+    published: '2020-11-20'
+    description: >-
+      First-party Go client for the Opera Ads platform. DECAY SIGNAL — last
+      pushed 2020-11-20, more than five years before the Report, Inventory,
+      OFP Report and File Upload APIs documented at doc.adx.opera.com. It
+      cannot cover the current surface; treat it as abandoned.
+    source: https://api.github.com/repos/operaads/api-client
   - language: java
     registry: github
     name: operaads/android-sdk
     url: https://github.com/operaads/android-sdk
     official: true
-    description: Opera Ads Android SDK (OpAdxSdk) for publishers monetizing Android apps.
-  - language: objective-c
-    registry: github
-    name: operaads/iOS-sdk
-    url: https://github.com/operaads/iOS-sdk
+    version: null
+    published: '2026-02-05'
+    description: >-
+      Public GitHub mirror / demo repository for the Opera Ads Android SDK. The
+      consumable artifact is com.opera:opera-ads on Opera's own Maven repo.
+    source: https://api.github.com/repos/operaads/android-sdk
+  - language: javascript
+    registry: cdn
+    name: oa.js
+    url: https://res.oa.opera.com/x/oa.js
+    install: '<script src="https://res.oa.opera.com/x/oa.js" async></script>'
     official: true
-    description: Opera Ads iOS SDK (OpAdxSdk) for publishers monetizing iOS apps.
+    version: null
+    published: null
+    description: >-
+      Opera Ads web JS tag. UNPINNED — the documented script URL carries no
+      version segment and floats to whatever Opera serves, so a consumer cannot
+      tell which build they are running and there is no registry or CDN
+      metadata endpoint to query. Recorded as checked-and-unversionable, not
+      unchecked.
+    source: https://doc.adx.opera.com/publisher/web/js-tag

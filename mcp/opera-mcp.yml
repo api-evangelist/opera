@@ -1,35 +1,79 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: derived
 status: candidate
-source: openapi/opera-ads-openapi.yml
+source: openapi/ (opera-report-api, opera-inventory-api, opera-marketing-api, opera-publisher-report-api, opera-dsp-report-api, opera-file-upload-api)
 note: >-
-  No official Opera Ads MCP server was found. This is a candidate tool list
-  derived one-to-one from the documented Opera Ads Open API operations.
+  No official Opera Ads MCP server exists. Probed mcp.opera.com and
+  mcp.adx.opera.com (both fail to resolve), the docs site, the operaads GitHub
+  org and the Opera Ads llms.txt surface — nothing. This is a CANDIDATE tool
+  list derived one-to-one from the documented Opera Ads Open API operations
+  across all six specs in openapi/. No endpoint is asserted because none
+  exists; see deployment.mode below.
 server:
   name: opera-ads
   transport: http
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+  tools: 17
+  checked: '2026-08-13'
+  source: >-
+    Probes of https://mcp.opera.com and https://mcp.adx.opera.com (DNS failure),
+    https://doc.adx.opera.com/ page map (87 pages, no MCP page),
+    https://github.com/operaads (no MCP repo).
 tools:
-  - name: get_campaign_daily_report
-    description: Retrieve daily campaign performance metrics (impressions, clicks, conversions, spend).
-    source_operation: openapi/opera-ads-openapi.yml#getCampaignDailyReport
-  - name: create_app
-    description: Create a new publisher app (inventory) entry.
-    source_operation: openapi/opera-ads-openapi.yml#createApp
-  - name: update_app
-    description: Update an existing publisher app entry.
-    source_operation: openapi/opera-ads-openapi.yml#updateApp
-  - name: list_apps
-    description: List publisher apps with optional filtering.
-    source_operation: openapi/opera-ads-openapi.yml#listApps
-  - name: create_placement
-    description: Create an ad placement on an app.
-    source_operation: openapi/opera-ads-openapi.yml#createPlacement
-  - name: update_placement
-    description: Update ad placement settings.
-    source_operation: openapi/opera-ads-openapi.yml#updatePlacement
-  - name: list_placements
-    description: List ad placements with optional filtering.
-    source_operation: openapi/opera-ads-openapi.yml#listPlacements
-  - name: report_conversion_event
-    description: Report a server-to-server conversion event to Opera Ads.
-    source_operation: openapi/opera-ads-openapi.yml#reportConversionEvent
+- name: get_campaign_daily_report
+  description: Retrieve daily advertiser campaign performance (impressions, clicks, conversions, spend).
+  source_operation: openapi/opera-report-api-openapi.yml#getCampaignDailyReport
+- name: create_app
+  description: Create a new publisher app (inventory) entry.
+  source_operation: openapi/opera-inventory-api-openapi.yml#createApp
+- name: update_app
+  description: Update an existing publisher app entry.
+  source_operation: openapi/opera-inventory-api-openapi.yml#updateApp
+- name: list_apps
+  description: List publisher apps with optional filtering.
+  source_operation: openapi/opera-inventory-api-openapi.yml#listApps
+- name: create_placement
+  description: Create an ad placement on an app.
+  source_operation: openapi/opera-inventory-api-openapi.yml#createPlacement
+- name: update_placement
+  description: Update ad placement settings.
+  source_operation: openapi/opera-inventory-api-openapi.yml#updatePlacement
+- name: list_placements
+  description: List ad placements with optional filtering.
+  source_operation: openapi/opera-inventory-api-openapi.yml#listPlacements
+- name: report_conversion_event
+  description: Report a server-to-server conversion event to Opera Ads.
+  source_operation: openapi/opera-marketing-api-openapi.yml#reportConversionEvent
+- name: query_publisher_report
+  description: Query publisher revenue and delivery report data by dimension and metric.
+  source_operation: openapi/opera-publisher-report-api-openapi.yml#queryPublisherReport
+- name: get_inventory_report
+  description: Get the legacy SSP inventory performance report for a date range.
+  source_operation: openapi/opera-publisher-report-api-openapi.yml#getInventoryReport
+- name: get_dsp_report
+  description: Pull DSP exchange performance (impressions, requests, fills, revenue) for a date range.
+  source_operation: openapi/opera-dsp-report-api-openapi.yml#getDspReport
+- name: get_upload_capabilities
+  description: Discover the TUS upload server's supported versions, extensions and max size.
+  source_operation: openapi/opera-file-upload-api-openapi.yml#getUploadCapabilities
+- name: create_upload_session
+  description: Create a resumable TUS upload session for a file.
+  source_operation: openapi/opera-file-upload-api-openapi.yml#createUploadSession
+- name: upload_chunk
+  description: Append a chunk of bytes to an upload session at a given offset.
+  source_operation: openapi/opera-file-upload-api-openapi.yml#uploadChunk
+- name: get_upload_offset
+  description: Get the authoritative resume offset for an upload session.
+  source_operation: openapi/opera-file-upload-api-openapi.yml#getUploadOffset
+- name: cancel_upload
+  description: Cancel an upload session (idempotent).
+  source_operation: openapi/opera-file-upload-api-openapi.yml#cancelUpload
+- name: list_uploads
+  description: List the customer's uploads, optionally filtered by status.
+  source_operation: openapi/opera-file-upload-api-openapi.yml#listUploads

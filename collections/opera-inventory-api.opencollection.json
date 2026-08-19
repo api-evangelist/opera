@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opera Ads Open Inventory API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/app/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new app (inventory) entry for a publisher."
+        },
+        {
+          "info": {
+            "name": "Update app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/app/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modify an existing app entry (supports partial updates)."
+        },
+        {
+          "info": {
+            "name": "List apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/app/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve apps with optional filtering by device, OS, traffic type, IAB category, and status."
+        },
+        {
+          "info": {
+            "name": "Create placement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/placement/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add an ad placement to an app."
+        },
+        {
+          "info": {
+            "name": "Update placement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/placement/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modify placement settings (incremental updates)."
+        },
+        {
+          "info": {
+            "name": "List placements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ofa.adx.opera.com/oapi/v1/placement/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve placements with optional filtering by app, format, category, and status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
