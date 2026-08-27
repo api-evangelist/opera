@@ -95,64 +95,90 @@ apis:
     url: https://doc.adx.opera.com/advertiser/report-api
   - type: APIReference
     url: https://doc.adx.opera.com/advertiser/report-api
-- aid: opera:opera-publisher-report-api
-  name: Opera Publisher Report API
-  description: >-
-    Publisher (OFP) revenue and delivery reporting — a measurement/dimension
-    query returning revenue, eCPM, requests, responses, impressions, clicks,
-    CTR, CPC, fill rate and show rate, plus the older token-in-query inventory
-    report.
-  humanURL: https://doc.adx.opera.com/publisher/ofp/report
-  baseURL: https://ofp.adx.opera.com
+- aid: opera:opera-dspreport-api
+  name: Opera DSP Report API
+  description: DSP-side exchange performance reporting.
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
   tags:
-  - Report
-  - Publishers
-  tags_raw:
-  - Report
-  - Publisher
+  - DSPReport
   properties:
   - type: OpenAPI
-    url: openapi/opera-publisher-report-api-openapi.yml
+    url: openapi/opera-dspreport-api-openapi.yml
   - type: Documentation
     url: https://doc.adx.opera.com/publisher/ofp/report
   - type: APIReference
     url: https://doc.adx.opera.com/adx/ssp/report
-- aid: opera:opera-dsp-report-api
-  name: Opera ADX DSP Report API
-  description: >-
-    Demand-side performance reporting for the Opera ADX exchange — daily
-    impressions, requests, fills and revenue over a window of up to 180
-    consecutive days, authenticated by a token query parameter.
-  humanURL: https://doc.adx.opera.com/adx/dsp/report-api
-  baseURL: https://cms-adx.op-mobile.opera.com
-  tags:
-  - Report
-  - OpenRTB
-  properties:
-  - type: OpenAPI
-    url: openapi/opera-dsp-report-api-openapi.yml
   - type: Documentation
     url: https://doc.adx.opera.com/adx/dsp/
   - type: APIReference
     url: https://doc.adx.opera.com/adx/dsp/report-api
-- aid: opera:opera-file-upload-api
-  name: Opera Ads File Upload API
-  description: >-
-    Resumable large-file upload implementing the TUS 1.0.0 protocol, with
-    API-key or HMAC-SHA256 authentication, 4 GB maximum file size, 256 MB
-    chunk ceiling and 7-day session expiry. The upload host is issued per
-    customer by the Opera Ads team.
-  humanURL: https://doc.adx.opera.com/advertiser/file_upload_api
-  baseURL: https://{host}/upload
+  - type: Documentation
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+- aid: opera:opera-filemanagement-api
+  name: Opera File Management API
+  description: Listing and inspecting uploads.
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
   tags:
-  - Upload
-  - File
-  tags_raw:
-  - Upload
-  - Files
+  - FileManagement
   properties:
   - type: OpenAPI
-    url: openapi/opera-file-upload-api-openapi.yml
+    url: openapi/opera-filemanagement-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/publisher/ofp/report
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/ssp/report
+  - type: Documentation
+    url: https://doc.adx.opera.com/adx/dsp/
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/dsp/report-api
+  - type: Documentation
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+- aid: opera:opera-publisherreport-api
+  name: Opera Publisher Report API
+  description: Publisher revenue and delivery reporting.
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
+  tags:
+  - PublisherReport
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-publisherreport-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/publisher/ofp/report
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/ssp/report
+  - type: Documentation
+    url: https://doc.adx.opera.com/adx/dsp/
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/dsp/report-api
+  - type: Documentation
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+- aid: opera:opera-upload-api
+  name: Opera Upload API
+  description: TUS resumable upload session lifecycle.
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
+  tags:
+  - Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-upload-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/publisher/ofp/report
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/ssp/report
+  - type: Documentation
+    url: https://doc.adx.opera.com/adx/dsp/
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/dsp/report-api
   - type: Documentation
     url: https://doc.adx.opera.com/advertiser/file_upload_api
   - type: APIReference
