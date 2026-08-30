@@ -135,6 +135,8 @@ apis:
   humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
   baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
   tags:
+  - File Management
+  tags_raw:
   - FileManagement
   properties:
   - type: OpenAPI
