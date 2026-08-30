@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  title: Opera Ads File Upload File Management API
+  version: 1.0.0
+  description: Resumable large-file upload for Opera Ads customers, implementing the TUS resumable upload protocol 1.0.0 so uploads survive network failures and continue from the last confirmed offset. Supports API-key or per-request HMAC-SHA256 signature authentication, a 4 GB maximum single file, a 256 MB gateway chunk ceiling, a 5 MB minimum chunk (except the final chunk), a 500 GB per-customer storage quota, and a 7-day upload-session expiry. Transcribed by API Evangelist from the public Opera Ads documentation at https://doc.adx.opera.com/advertiser/file_upload_api — the host is issued per customer by the Opera team, so it is modelled as a server variable.
+  contact:
+    name: Opera Ads
+    url: https://doc.adx.opera.com/
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://doc.adx.opera.com/advertiser/file_upload_api
+servers:
+- url: https://{host}/upload
+  description: Upload host issued by the Opera Ads team
+  variables:
+    host:
+      default: upload.example.opera.com
+      description: The upload service host provided by Opera. The documentation writes this as https://<service-host>/upload and instructs customers to substitute the host given to them.
+security:
+- apiKeyAuth: []
+- hmacAuth: []
+tags:
+- name: FileManagement
+  description: Listing and inspecting uploads.
+paths:
+  /files:
+    get:
+      tags:
+      - FileManagement
+      operationId: listUploads
+      summary: List uploads
+      description: List the calling customer's uploads, optionally filtered by status.
+      parameters:
+      - name: page
+        in: query
+        description: Page number (1-based).
+        schema:
+          type: integer
+          default: 1
+      - name: page_size
+        in: query
+        description: Records per page (max 100).
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+      - name: status
+        in: query
+        description: 0 = uploading, 1 = complete, 2 = failed, 3 = cancelled.
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+      responses:
+        '200':
+          description: Upload list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadList'
+        '401':
+          description: Missing or invalid authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Upload session ID (the last path segment of the Location URL).
+      schema:
+        type: string
+    get:
+      tags:
+      - FileManagement
+      operationId: getUpload
+      summary: Get upload details
+      description: Full record for one upload. For status 0 (uploading), `offset` reflects the last completed chunk and is not a safe resume point — use HEAD.
+      responses:
+        '200':
+          description: Upload record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Upload'
+        '401':
+          description: Missing or invalid authentication
+        '403':
+          description: Upload ID exists but belongs to a different customer
+        '404':
+          description: Upload ID not found
+components:
+  schemas:
+    Upload:
+      type: object
+      properties:
+        upload_id:
+          type: string
+        filename:
+          type: string
+        size:
+          type: integer
+          description: Declared total size in bytes.
+        offset:
+          type: integer
+          description: Bytes recorded by the file-management view (not a resume point).
+        status:
+          type: integer
+          description: 0 = uploading, 1 = complete, 2 = failed, 3 = cancelled.
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+        key:
+          type: string
+          description: Destination path relative to the customer's storage prefix.
+        create_time:
+          type: string
+          format: date-time
+        update_time:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable description.
+    UploadList:
+      type: object
+      properties:
+        uploads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Upload'
+        page:
+          type: integer
+        page_size:
+          type: integer
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Static API key issued by the Opera team, prefixed `adx_`. Contact Opera support to rotate a compromised key.
+    hmacAuth:
+      type: apiKey
+      in: header
+      name: X-HMAC-Signature
+      description: Per-request HMAC-SHA256 signature, lowercase hex, over the message `{METHOD}\n{PATH}\n{TIMESTAMP}`. Sent alongside `X-HMAC-Key-Id` (format `ADX_HMAC_...`) and `X-HMAC-Timestamp` (Unix seconds, ±300s window).
