@@ -129,30 +129,6 @@ apis:
     url: https://doc.adx.opera.com/advertiser/file_upload_api
   - type: APIReference
     url: https://doc.adx.opera.com/advertiser/file_upload_api
-- aid: opera:opera-filemanagement-api
-  name: Opera File Management API
-  description: Listing and inspecting uploads.
-  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
-  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
-  tags:
-  - File Management
-  tags_raw:
-  - FileManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/opera-filemanagement-api-openapi.yml
-  - type: Documentation
-    url: https://doc.adx.opera.com/publisher/ofp/report
-  - type: APIReference
-    url: https://doc.adx.opera.com/adx/ssp/report
-  - type: Documentation
-    url: https://doc.adx.opera.com/adx/dsp/
-  - type: APIReference
-    url: https://doc.adx.opera.com/adx/dsp/report-api
-  - type: Documentation
-    url: https://doc.adx.opera.com/advertiser/file_upload_api
-  - type: APIReference
-    url: https://doc.adx.opera.com/advertiser/file_upload_api
 - aid: opera:opera-publisherreport-api
   name: Opera Publisher Report API
   description: Publisher revenue and delivery reporting.
@@ -185,6 +161,28 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/opera-upload-api-openapi.yml
+  - type: Documentation
+    url: https://doc.adx.opera.com/publisher/ofp/report
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/ssp/report
+  - type: Documentation
+    url: https://doc.adx.opera.com/adx/dsp/
+  - type: APIReference
+    url: https://doc.adx.opera.com/adx/dsp/report-api
+  - type: Documentation
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+  - type: APIReference
+    url: https://doc.adx.opera.com/advertiser/file_upload_api
+- aid: opera:opera-file-management-api
+  name: Opera File Management API
+  description: Listing and inspecting uploads.
+  humanURL: https://doc.adx.opera.com/publisher/inventory-management-api
+  baseURL: https://ofp.adx.opera.com/openapi/inventory/v1
+  tags:
+  - File Management
+  properties:
+  - type: OpenAPI
+    url: openapi/opera-file-management-api-openapi.yml
   - type: Documentation
     url: https://doc.adx.opera.com/publisher/ofp/report
   - type: APIReference
