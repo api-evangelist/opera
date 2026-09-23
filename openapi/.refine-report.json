@@ -1,18 +1,41 @@
 {
   "provider": "opera",
   "sources": [
-    "opera-inventory-api-openapi.yml",
-    "opera-marketing-api-openapi.yml",
-    "opera-report-api-openapi.yml"
+    "_original/opera-ads-openapi.yml",
+    "_original/opera-dsp-report-api-openapi.yml",
+    "_original/opera-file-upload-api-openapi.yml",
+    "_original/opera-publisher-report-api-openapi.yml"
   ],
   "outputs": [
     "opera-inventory-api-openapi.yml",
     "opera-marketing-api-openapi.yml",
-    "opera-report-api-openapi.yml"
+    "opera-report-api-openapi.yml",
+    "opera-dspreport-api-openapi.yml",
+    "opera-filemanagement-api-openapi.yml",
+    "opera-upload-api-openapi.yml",
+    "opera-publisherreport-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "opera-ads-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "opera-dsp-report-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "opera-file-upload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "opera-publisher-report-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: opera-file-management-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 7 total)"
+  ],
+  "skipped": [
+    "opera-dspreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-file-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-inventory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-marketing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-publisherreport-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-report-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "opera-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

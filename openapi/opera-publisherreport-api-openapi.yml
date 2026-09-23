@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Opera Ads Publisher (OFP) Report Publisher Report API
   version: v1
-  description: Publisher-side reporting for the Opera Ads / OFP platform. Exposes a measurement-and-dimension query endpoint returning revenue, requests, responses, impressions, clicks, CTR, eCPM, fill rate and show rate for a publisher's apps and placements, plus the older token-in-query inventory report. Transcribed by API Evangelist from the public Opera Ads documentation at https://doc.adx.opera.com/publisher/ofp/report and https://doc.adx.opera.com/adx/ssp/report — endpoints, fields, and error codes are taken from those pages; contact Opera Ads to obtain a token.
+  description: Publisher-side reporting for the Opera Ads / OFP platform.
   contact:
     name: Opera Ads
     url: https://doc.adx.opera.com/
@@ -128,18 +128,15 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
+    InventoryReportResponse:
       type: object
       properties:
-        code:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryReportRow'
+        total_count:
           type: integer
-          description: Error code — 0 means success.
-        msg:
-          type: string
-          description: Error message.
-        message:
-          type: string
-          description: Error message (alternate field name used by some endpoints).
     PublisherReportQuery:
       type: object
       required:
@@ -164,41 +161,18 @@ components:
         limit:
           type: integer
           description: Number of records to return.
-    Measurement:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Metric or dimension name.
-        sort:
-          type: string
-          description: Sort direction — "desc", "asc", or "" for no sorting.
-          enum:
-          - desc
-          - asc
-          - ''
-    InventoryReportResponse:
+    Error:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryReportRow'
-        total_count:
+        code:
           type: integer
-    Filter:
-      type: object
-      required:
-      - name
-      - value
-      properties:
-        name:
+          description: Error code — 0 means success.
+        msg:
           type: string
-          description: Filter field name, e.g. "day", "app_id", "slot_id".
-        value:
-          description: Filter value — an array for a date range or an ID list.
+          description: Error message.
+        message:
+          type: string
+          description: Error message (alternate field name used by some endpoints).
     InventoryReportRow:
       type: object
       properties:
@@ -225,6 +199,32 @@ components:
         revenue:
           type: number
           description: Revenue in US dollars; -1 means the figure is still updating.
+    Filter:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Filter field name, e.g. "day", "app_id", "slot_id".
+        value:
+          description: Filter value — an array for a date range or an ID list.
+    Measurement:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Metric or dimension name.
+        sort:
+          type: string
+          description: Sort direction — "desc", "asc", or "" for no sorting.
+          enum:
+          - desc
+          - asc
+          - ''
     PublisherReportResponse:
       type: object
       properties:

@@ -1,30 +1,21 @@
 generated: '2026-08-13'
 method: derived
 status: candidate
-source: openapi/ (opera-report-api, opera-inventory-api, opera-marketing-api, opera-publisher-report-api, opera-dsp-report-api, opera-file-upload-api)
-note: >-
-  No official Opera Ads MCP server exists. Probed mcp.opera.com and
-  mcp.adx.opera.com (both fail to resolve), the docs site, the operaads GitHub
-  org and the Opera Ads llms.txt surface — nothing. This is a CANDIDATE tool
-  list derived one-to-one from the documented Opera Ads Open API operations
-  across all six specs in openapi/. No endpoint is asserted because none
-  exists; see deployment.mode below.
+source: openapi/ (opera-report-api, opera-inventory-api, opera-marketing-api, opera-publisher-report-api,
+  opera-dsp-report-api, opera-file-upload-api)
+note: No official Opera Ads MCP server exists. Probed mcp.opera.com and mcp.adx.opera.com (both fail to
+  resolve), the docs site, the operaads GitHub org and the Opera Ads llms.txt surface — nothing. This
+  is a CANDIDATE tool list derived one-to-one from the documented Opera Ads Open API operations across
+  all six specs in openapi/. No endpoint is asserted because none exists; see deployment.mode below.
 server:
   name: opera-ads
   transport: http
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: api-key
   verified: derived
-  tools: 17
-  checked: '2026-08-13'
-  source: >-
-    Probes of https://mcp.opera.com and https://mcp.adx.opera.com (DNS failure),
-    https://doc.adx.opera.com/ page map (87 pages, no MCP page),
-    https://github.com/operaads (no MCP repo).
+  tools: 8
+  checked: '2026-08-12'
+  source: catalog MCP census
 tools:
 - name: get_campaign_daily_report
   description: Retrieve daily advertiser campaign performance (impressions, clicks, conversions, spend).

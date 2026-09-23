@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Opera Ads File Upload API
   version: 1.0.0
-  description: Resumable large-file upload for Opera Ads customers, implementing the TUS resumable upload protocol 1.0.0 so uploads survive network failures and continue from the last confirmed offset. Supports API-key or per-request HMAC-SHA256 signature authentication, a 4 GB maximum single file, a 256 MB gateway chunk ceiling, a 5 MB minimum chunk (except the final chunk), a 500 GB per-customer storage quota, and a 7-day upload-session expiry. Transcribed by API Evangelist from the public Opera Ads documentation at https://doc.adx.opera.com/advertiser/file_upload_api — the host is issued per customer by the Opera team, so it is modelled as a server variable.
+  description: Resumable large-file upload for Opera Ads customers, implementing the TUS resumable upload protocol 1.0.0 so uploads survive network failures and continue from the last confirmed offset.
   contact:
     name: Opera Ads
     url: https://doc.adx.opera.com/

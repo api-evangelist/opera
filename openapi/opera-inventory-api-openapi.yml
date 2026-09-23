@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Opera Ads Open Inventory API
   version: v1
@@ -212,38 +212,21 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Forbidden:
-      description: Insufficient scope for the requested resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid token (envelope code 2)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate limit exceeded (envelope code 3)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error (envelope code 4)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameters (envelope code 1)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    PlacementListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Placement'
     PlacementListRequest:
       type: object
       properties:
@@ -257,6 +240,28 @@ components:
           type: string
         status:
           type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
+        message:
+          type: string
+    AppListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/App'
     AppListRequest:
       type: object
       properties:
@@ -272,34 +277,6 @@ components:
           type: array
           items:
             type: string
-    AppListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            totalCount:
-              type: integer
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/App'
-    PlacementListResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            totalCount:
-              type: integer
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Placement'
     App:
       type: object
       properties:
@@ -361,14 +338,37 @@ components:
           type: integer
         status:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
-        message:
-          type: string
+  responses:
+    ServerError:
+      description: Server error (envelope code 4)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid token (envelope code 2)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded (envelope code 3)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameters (envelope code 1)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient scope for the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
