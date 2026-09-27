@@ -95,6 +95,23 @@ paths:
           description: Upload ID not found
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable description.
+    UploadList:
+      type: object
+      properties:
+        uploads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Upload'
+        page:
+          type: integer
+        page_size:
+          type: integer
     Upload:
       type: object
       properties:
@@ -125,23 +142,6 @@ components:
         update_time:
           type: string
           format: date-time
-    UploadList:
-      type: object
-      properties:
-        uploads:
-          type: array
-          items:
-            $ref: '#/components/schemas/Upload'
-        page:
-          type: integer
-        page_size:
-          type: integer
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Human-readable description.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

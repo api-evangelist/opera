@@ -173,6 +173,24 @@ components:
         message:
           type: string
           description: Error message (alternate field name used by some endpoints).
+    PublisherReportResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Status message.
+        rows:
+          type: array
+          description: Report rows; fields depend on the requested measurements.
+          items:
+            type: object
+            additionalProperties: true
+        statusCode:
+          type: integer
+          description: Status code — 0 means success.
+        total:
+          type: integer
+          description: Total number of matching records.
     InventoryReportRow:
       type: object
       properties:
@@ -225,24 +243,6 @@ components:
           - desc
           - asc
           - ''
-    PublisherReportResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Status message.
-        rows:
-          type: array
-          description: Report rows; fields depend on the requested measurements.
-          items:
-            type: object
-            additionalProperties: true
-        statusCode:
-          type: integer
-          description: Status code — 0 means success.
-        total:
-          type: integer
-          description: Total number of matching records.
   securitySchemes:
     bearerAuth:
       type: http
