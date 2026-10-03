@@ -74,47 +74,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    ReportFilter:
-      type: object
-      properties:
-        day:
-          type: array
-          description: Date range as ["YYYYMMDD","YYYYMMDD"]; max 90 days.
-          items:
-            type: string
-        order_id:
-          type: array
-          items:
-            type: string
-        lineitem_id:
-          type: array
-          items:
-            type: string
-        creative_id:
-          type: array
-          items:
-            type: string
-    ReportResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object
-          properties:
-            page:
-              type: integer
-            page_size:
-              type: integer
-            total:
-              type: integer
-            list:
-              type: array
-              items:
-                type: object
-                additionalProperties: true
     Error:
       type: object
       properties:
@@ -154,6 +113,47 @@ components:
           type: integer
           default: 50
           maximum: 1000
+    ReportResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            page:
+              type: integer
+            page_size:
+              type: integer
+            total:
+              type: integer
+            list:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+    ReportFilter:
+      type: object
+      properties:
+        day:
+          type: array
+          description: Date range as ["YYYYMMDD","YYYYMMDD"]; max 90 days.
+          items:
+            type: string
+        order_id:
+          type: array
+          items:
+            type: string
+        lineitem_id:
+          type: array
+          items:
+            type: string
+        creative_id:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

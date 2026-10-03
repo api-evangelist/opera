@@ -212,38 +212,39 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Forbidden:
+      description: Insufficient scope for the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded (envelope code 3)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameters (envelope code 1)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error (envelope code 4)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid token (envelope code 2)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Placement:
-      type: object
-      properties:
-        sid:
-          type: string
-        appId:
-          type: string
-        name:
-          type: string
-        floorPrice:
-          type: number
-        countryFloorPrice:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-        sdkAdFormat:
-          type: string
-        sdkAdTypes:
-          type: array
-          items:
-            type: string
-        sdkAdSize:
-          type: string
-        sdkAutoRefresh:
-          type: boolean
-        sdkAutoRefreshInterval:
-          type: integer
-        status:
-          type: string
-    PlacementListResponse:
+    AppListResponse:
       type: object
       properties:
         code:
@@ -256,7 +257,28 @@ components:
             list:
               type: array
               items:
-                $ref: '#/components/schemas/Placement'
+                $ref: '#/components/schemas/App'
+    PlacementListRequest:
+      type: object
+      properties:
+        appId:
+          type: string
+        appType:
+          type: string
+        sdkAdFormat:
+          type: string
+        iabCategory:
+          type: string
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
+        message:
+          type: string
     App:
       type: object
       properties:
@@ -288,15 +310,7 @@ components:
           type: boolean
         status:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
-        message:
-          type: string
-    AppListResponse:
+    PlacementListResponse:
       type: object
       properties:
         code:
@@ -309,18 +323,35 @@ components:
             list:
               type: array
               items:
-                $ref: '#/components/schemas/App'
-    PlacementListRequest:
+                $ref: '#/components/schemas/Placement'
+    Placement:
       type: object
       properties:
+        sid:
+          type: string
         appId:
           type: string
-        appType:
+        name:
           type: string
+        floorPrice:
+          type: number
+        countryFloorPrice:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
         sdkAdFormat:
           type: string
-        iabCategory:
+        sdkAdTypes:
+          type: array
+          items:
+            type: string
+        sdkAdSize:
           type: string
+        sdkAutoRefresh:
+          type: boolean
+        sdkAutoRefreshInterval:
+          type: integer
         status:
           type: string
     AppListRequest:
@@ -338,37 +369,6 @@ components:
           type: array
           items:
             type: string
-  responses:
-    Forbidden:
-      description: Insufficient scope for the requested resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameters (envelope code 1)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error (envelope code 4)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid token (envelope code 2)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate limit exceeded (envelope code 3)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -128,15 +128,62 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    InventoryReportResponse:
+    Error:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryReportRow'
-        total_count:
+        code:
           type: integer
+          description: Error code — 0 means success.
+        msg:
+          type: string
+          description: Error message.
+        message:
+          type: string
+          description: Error message (alternate field name used by some endpoints).
+    Filter:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Filter field name, e.g. "day", "app_id", "slot_id".
+        value:
+          description: Filter value — an array for a date range or an ID list.
+    PublisherReportResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Status message.
+        rows:
+          type: array
+          description: Report rows; fields depend on the requested measurements.
+          items:
+            type: object
+            additionalProperties: true
+        statusCode:
+          type: integer
+          description: Status code — 0 means success.
+        total:
+          type: integer
+          description: Total number of matching records.
+    Measurement:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Metric or dimension name.
+        sort:
+          type: string
+          description: Sort direction — "desc", "asc", or "" for no sorting.
+          enum:
+          - desc
+          - asc
+          - ''
     PublisherReportQuery:
       type: object
       required:
@@ -161,36 +208,15 @@ components:
         limit:
           type: integer
           description: Number of records to return.
-    Error:
+    InventoryReportResponse:
       type: object
       properties:
-        code:
-          type: integer
-          description: Error code — 0 means success.
-        msg:
-          type: string
-          description: Error message.
-        message:
-          type: string
-          description: Error message (alternate field name used by some endpoints).
-    PublisherReportResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Status message.
-        rows:
+        list:
           type: array
-          description: Report rows; fields depend on the requested measurements.
           items:
-            type: object
-            additionalProperties: true
-        statusCode:
+            $ref: '#/components/schemas/InventoryReportRow'
+        total_count:
           type: integer
-          description: Status code — 0 means success.
-        total:
-          type: integer
-          description: Total number of matching records.
     InventoryReportRow:
       type: object
       properties:
@@ -217,32 +243,6 @@ components:
         revenue:
           type: number
           description: Revenue in US dollars; -1 means the figure is still updating.
-    Filter:
-      type: object
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Filter field name, e.g. "day", "app_id", "slot_id".
-        value:
-          description: Filter value — an array for a date range or an ID list.
-    Measurement:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Metric or dimension name.
-        sort:
-          type: string
-          description: Sort direction — "desc", "asc", or "" for no sorting.
-          enum:
-          - desc
-          - asc
-          - ''
   securitySchemes:
     bearerAuth:
       type: http

@@ -52,6 +52,18 @@ paths:
                 $ref: '#/components/schemas/DspReportResponse'
 components:
   schemas:
+    DspReportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DspReportRow'
+        message:
+          type: string
+        statusCode:
+          type: integer
+          description: 0 = Ok; 1 = Invalid parameters (bad date format or range >= 180 days); 2 = Invalid token; 3 = Too many requests (blocked by QPS limiter); 4 = Internal error.
     DspReportRow:
       type: object
       properties:
@@ -67,15 +79,3 @@ components:
         revenue:
           type: string
           description: Revenue as a decimal string, in US dollars.
-    DspReportResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DspReportRow'
-        message:
-          type: string
-        statusCode:
-          type: integer
-          description: 0 = Ok; 1 = Invalid parameters (bad date format or range >= 180 days); 2 = Invalid token; 3 = Too many requests (blocked by QPS limiter); 4 = Internal error.
