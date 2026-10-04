@@ -212,37 +212,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Forbidden:
-      description: Insufficient scope for the requested resource
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate limit exceeded (envelope code 3)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameters (envelope code 1)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error (envelope code 4)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid token (envelope code 2)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     AppListResponse:
       type: object
@@ -258,19 +227,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/App'
-    PlacementListRequest:
-      type: object
-      properties:
-        appId:
-          type: string
-        appType:
-          type: string
-        sdkAdFormat:
-          type: string
-        iabCategory:
-          type: string
-        status:
-          type: string
     Error:
       type: object
       properties:
@@ -279,6 +235,65 @@ components:
           description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
         message:
           type: string
+    AppListRequest:
+      type: object
+      properties:
+        deviceType:
+          type: string
+        osType:
+          type: string
+        trafficType:
+          type: string
+        iabCategory:
+          type: string
+        status:
+          type: array
+          items:
+            type: string
+    Placement:
+      type: object
+      properties:
+        sid:
+          type: string
+        appId:
+          type: string
+        name:
+          type: string
+        floorPrice:
+          type: number
+        countryFloorPrice:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        sdkAdFormat:
+          type: string
+        sdkAdTypes:
+          type: array
+          items:
+            type: string
+        sdkAdSize:
+          type: string
+        sdkAutoRefresh:
+          type: boolean
+        sdkAutoRefreshInterval:
+          type: integer
+        status:
+          type: string
+    PlacementListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Placement'
     App:
       type: object
       properties:
@@ -310,65 +325,50 @@ components:
           type: boolean
         status:
           type: string
-    PlacementListResponse:
+    PlacementListRequest:
       type: object
       properties:
-        code:
-          type: integer
-        data:
-          type: object
-          properties:
-            totalCount:
-              type: integer
-            list:
-              type: array
-              items:
-                $ref: '#/components/schemas/Placement'
-    Placement:
-      type: object
-      properties:
-        sid:
-          type: string
         appId:
           type: string
-        name:
+        appType:
           type: string
-        floorPrice:
-          type: number
-        countryFloorPrice:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
         sdkAdFormat:
-          type: string
-        sdkAdTypes:
-          type: array
-          items:
-            type: string
-        sdkAdSize:
-          type: string
-        sdkAutoRefresh:
-          type: boolean
-        sdkAutoRefreshInterval:
-          type: integer
-        status:
-          type: string
-    AppListRequest:
-      type: object
-      properties:
-        deviceType:
-          type: string
-        osType:
-          type: string
-        trafficType:
           type: string
         iabCategory:
           type: string
         status:
-          type: array
-          items:
-            type: string
+          type: string
+  responses:
+    RateLimited:
+      description: Rate limit exceeded (envelope code 3)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid token (envelope code 2)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error (envelope code 4)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient scope for the requested resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameters (envelope code 1)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

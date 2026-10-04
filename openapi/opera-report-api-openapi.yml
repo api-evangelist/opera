@@ -48,32 +48,27 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    RateLimited:
-      description: Rate limit exceeded (envelope code 3)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameters (envelope code 1)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error (envelope code 4)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid token (envelope code 2)
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    ReportFilter:
+      type: object
+      properties:
+        day:
+          type: array
+          description: Date range as ["YYYYMMDD","YYYYMMDD"]; max 90 days.
+          items:
+            type: string
+        order_id:
+          type: array
+          items:
+            type: string
+        lineitem_id:
+          type: array
+          items:
+            type: string
+        creative_id:
+          type: array
+          items:
+            type: string
     Error:
       type: object
       properties:
@@ -134,26 +129,31 @@ components:
               items:
                 type: object
                 additionalProperties: true
-    ReportFilter:
-      type: object
-      properties:
-        day:
-          type: array
-          description: Date range as ["YYYYMMDD","YYYYMMDD"]; max 90 days.
-          items:
-            type: string
-        order_id:
-          type: array
-          items:
-            type: string
-        lineitem_id:
-          type: array
-          items:
-            type: string
-        creative_id:
-          type: array
-          items:
-            type: string
+  responses:
+    RateLimited:
+      description: Rate limit exceeded (envelope code 3)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid token (envelope code 2)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error (envelope code 4)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameters (envelope code 1)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

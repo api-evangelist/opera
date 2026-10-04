@@ -128,6 +128,26 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    InventoryReportResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryReportRow'
+        total_count:
+          type: integer
+    Filter:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Filter field name, e.g. "day", "app_id", "slot_id".
+        value:
+          description: Filter value — an array for a date range or an ID list.
     Error:
       type: object
       properties:
@@ -140,35 +160,6 @@ components:
         message:
           type: string
           description: Error message (alternate field name used by some endpoints).
-    Filter:
-      type: object
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Filter field name, e.g. "day", "app_id", "slot_id".
-        value:
-          description: Filter value — an array for a date range or an ID list.
-    PublisherReportResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Status message.
-        rows:
-          type: array
-          description: Report rows; fields depend on the requested measurements.
-          items:
-            type: object
-            additionalProperties: true
-        statusCode:
-          type: integer
-          description: Status code — 0 means success.
-        total:
-          type: integer
-          description: Total number of matching records.
     Measurement:
       type: object
       required:
@@ -184,39 +175,6 @@ components:
           - desc
           - asc
           - ''
-    PublisherReportQuery:
-      type: object
-      required:
-      - filters
-      - measurements
-      - limit
-      properties:
-        filters:
-          type: array
-          description: Filter conditions; must include a `day` filter.
-          items:
-            $ref: '#/components/schemas/Filter'
-        measurements:
-          type: array
-          description: Metrics and dimensions to retrieve.
-          items:
-            $ref: '#/components/schemas/Measurement'
-        offset:
-          type: integer
-          description: Pagination offset.
-          default: 0
-        limit:
-          type: integer
-          description: Number of records to return.
-    InventoryReportResponse:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/InventoryReportRow'
-        total_count:
-          type: integer
     InventoryReportRow:
       type: object
       properties:
@@ -243,6 +201,48 @@ components:
         revenue:
           type: number
           description: Revenue in US dollars; -1 means the figure is still updating.
+    PublisherReportResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Status message.
+        rows:
+          type: array
+          description: Report rows; fields depend on the requested measurements.
+          items:
+            type: object
+            additionalProperties: true
+        statusCode:
+          type: integer
+          description: Status code — 0 means success.
+        total:
+          type: integer
+          description: Total number of matching records.
+    PublisherReportQuery:
+      type: object
+      required:
+      - filters
+      - measurements
+      - limit
+      properties:
+        filters:
+          type: array
+          description: Filter conditions; must include a `day` filter.
+          items:
+            $ref: '#/components/schemas/Filter'
+        measurements:
+          type: array
+          description: Metrics and dimensions to retrieve.
+          items:
+            $ref: '#/components/schemas/Measurement'
+        offset:
+          type: integer
+          description: Pagination offset.
+          default: 0
+        limit:
+          type: integer
+          description: Number of records to return.
   securitySchemes:
     bearerAuth:
       type: http

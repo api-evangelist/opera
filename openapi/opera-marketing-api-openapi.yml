@@ -48,12 +48,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    MarketingResponse:
+    Error:
       type: object
       properties:
-        status:
+        code:
           type: integer
-          description: 0 for success.
+          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
         message:
           type: string
     ConversionEvent:
@@ -77,12 +77,12 @@ components:
           type: string
         event_value:
           type: string
-    Error:
+    MarketingResponse:
       type: object
       properties:
-        code:
+        status:
           type: integer
-          description: Business error code (0 success, 1 invalid params, 2 auth, 3 rate limit, 4 server).
+          description: 0 for success.
         message:
           type: string
   securitySchemes:
