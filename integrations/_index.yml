@@ -36,3 +36,42 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: opera-app-defense-alliance-certified-products
+  label: App Defense Alliance certified products
+  partner_name: App Defense Alliance certified products
+  category: mobile app security certification
+  type: register
+  channel: standard-directory
+  evidence: https://cert.appdefensealliance.org/certifications/10172
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: App Defense Alliance certified products (cert.appdefensealliance.org/certifications)
+    standard: ADA Mobile Application Security Profile / OWASP MASVS (MASA)
+    spec_file: null
+    role: ada-certified-developer
+    registered_name: Opera
+    register_id: https://cert.appdefensealliance.org/certifications/10172
+    matched_domain: opera.com
+    matched_by: domain
+    domain_source: package id (reverse domain)
+    certified_products:
+    - product: Mobile application (ADA Mobile App Profile / MASA)
+      product_type: Mobile application (ADA Mobile App Profile / MASA)
+      certifier: App Defense Alliance (authorized lab + certification body)
+      example_product: Opera browser with AI
+      example_certificate: https://cert.appdefensealliance.org/certifications/10172
+      assurance_levels: []
+      newest_expiry: '2027-02-13'
+      lapsed: false
+      lapsed_note: lapsed = no certificate of this type is Valid and unexpired today
+    products_sample:
+    - Opera browser with AI
+    labs:
+    - Leviathan Security
+    signal_note: certified_products = ONE entry per ADA product type (profile family), never per app or certificate;
+      labs are assessors (context, never linked)
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
