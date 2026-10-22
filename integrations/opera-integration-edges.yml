@@ -11,6 +11,8 @@ checked:
 - https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
 - https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
 - https://www.raycast.com/api/v1/store_listings
+- https://flathub.org/api/v2/appstream
+- https://flathub.org/api/v2/appstream/<app-id>
 marketplace_apps: []
 edges:
 - partner_name: IAB Europe TCF Global Vendor List
@@ -171,6 +173,43 @@ edges:
   detected_by: sweep-raycast-store-extensions.py
   first_seen: '2026-10-22'
   direction: partner-built
+- partner_name: Flathub
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: flathub
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://flathub.org/apps/com.opera.opera-gx
+  app: Opera GX
+  listing_count: 1
+  category: Linux desktop app (Flathub)
+  partner_url: https://flathub.org/
+  contract_reference:
+    register: 'Flathub (flathub.org/api/v2/appstream/<app-id>: developer_name, urls.homepage, flathub::verification::*)'
+    spec_file: null
+    role: flathub-verified-publisher
+    registered_name: Opera
+    register_id: https://flathub.org/api/v2/appstream/com.opera.opera-gx
+    matched_domain: opera.com
+    matched_by: domain
+    matched_name: Opera
+    verification_method: website
+    verified_website: opera.com
+    app_id_domain: opera.com
+    signal_note: ONE edge per provider for the store; listing alone = participation. Only apps whose Flathub verification
+      is a domain proof (website / dns) on the provider's own domain, with the reverse-DNS app id agreeing; app
+      counts are context, never counted. Unverified (community repackage) and account-verified apps are held. No
+      Flathub repo in all/*, so no platform-side edge exists to mirror.
+    detected_by: sweep-flathub-linux-app-publishers.py
+    detected: '2026-10-22'
+  badges:
+  - Flathub verified
+  publisher_verified:
+  - Flathub verified
+  detected_by: sweep-flathub-linux-app-publishers.py
+  first_seen: '2026-10-22'
 source:
 - https://play.google.com/sdks
 - https://search.maven.org/solrsearch/select
